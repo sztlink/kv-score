@@ -48,9 +48,9 @@ def ask(prompt):
 
 
 def work(case):
-    a, t, rk = parse(ask(case["prompt"]))
+    a, t, rk = parse(ask(case["user"]))
     return (a == case["expected_action"] and t == case["expected_target"]
-            and rk == case["expected_rank"])
+            and rk is not None and int(rk) == int(case["expected_rank"]))
 
 
 with ThreadPoolExecutor(max_workers=8) as ex:
