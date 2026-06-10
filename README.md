@@ -62,6 +62,8 @@ Reading: all three compressed configs land in a 122-135 band, by different route
 
 One-line version: at 2x compression, eviction breaks 24-57 behavior points where quant breaks 4-6, and answer-level suites do not see it. By the bands: every quant config above is behavior-safe (Q >= 94); SnapKV is degraded; ExpectedAttention and Knorm are broken for agent use, and Knorm scores below doing nothing at all. These same presses report near-lossless results on answer-level long-context suites; behavior collapses first. Regime caveat: these cases are 1-2k token agent-routing prompts, the short end of what eviction methods are designed for. AdaKV (SnapKV) is not scored: it requires flash-attention and degenerates under SDPA (harness limitation, not a method verdict).
 
+The collapse curve (SnapKV by ratio, same cases, baseline 98/120): 0.125 -> 97, 0.25 -> 95, 0.375 -> 88, 0.5 -> 74, 0.625 -> 32, 0.75 -> 0. Graceful to 0.375, then a cliff between 0.5 and 0.625. The behavior-safe ratio for this workload is ~0.25 (1.33x capacity), well below the 0.5+ regime where these methods are usually advertised. Raw points in `results/4090wsl-qwen2.5-7b-snapkv-curve-2026-06-10.csv`.
+
 Throughput note: this stack's T is single-stream decode tok/s (transformers has no continuous batching); it is only comparable within this table, normalized to its own fp16 row.
 
 ## Method notes (scars included)
