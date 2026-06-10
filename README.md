@@ -64,6 +64,8 @@ One-line version: at 2x compression, eviction breaks 24-57 behavior points where
 
 The collapse curve (SnapKV by ratio, same cases, baseline 98/120): 0.125 -> 97, 0.25 -> 95, 0.375 -> 88, 0.5 -> 74, 0.625 -> 32, 0.75 -> 0. Graceful to 0.375, then a cliff between 0.5 and 0.625. The behavior-safe ratio for this workload is ~0.25 (1.33x capacity), well below the 0.5+ regime where these methods are usually advertised. Raw points in `results/4090wsl-qwen2.5-7b-snapkv-curve-2026-06-10.csv`.
 
+The cliff generalizes: on Qwen3-4B (chat template, thinking disabled; baseline 107/120) the same curve appears in the same place and sharper: 0.25 -> 106, 0.5 -> 71, 0.625 -> 12, 0.75 -> 0. Two models, two prompting modes, one cliff between ratio 0.5 and 0.625. Mode note: the probe is sensitive to model mode; thinking-mode models score near zero on raw completion (Qwen3-4B: 5/120) and need their chat template with thinking disabled.
+
 Throughput note: this stack's T is single-stream decode tok/s (transformers has no continuous batching); it is only comparable within this table, normalized to its own fp16 row.
 
 ## Method notes (scars included)
