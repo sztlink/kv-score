@@ -43,6 +43,19 @@ One rule: same model, same flags, same box for every row. fp16 on the same stack
 
 Reading: all three compressed configs land in a 122-135 band, by different routes. TQ k8v4 holds behavior at full parity (102 is within ±1-case noise of 100) with 2.1x capacity. TQ k4v2_nc leads the composite via 3.2x capacity but pays 6 behavior points vs k8v4. KVarN k4v2 splits the difference: 91% throughput, 2.6x capacity, 4 behavior points. Which one wins depends on the axis your workload cannot give up; the composite only tells you none of them is dominated.
 
+## Example 2: eviction family (kvpress @ compression_ratio 0.5), same model, same rig, transformers stack
+
+| config | Q | T | C | KV-Score |
+|---|---|---|---|---|
+| fp16 transformers (reference) | 100.0 | 100.0 | 100.0 | **100.0** |
+| SnapKV | 75.5 | 90.6 | 200.0 | **111.0** |
+| ExpectedAttention | 56.1 | 95.7 | 200.0 | **102.4** |
+| Knorm | 42.9 | 94.4 | 200.0 | **93.2** |
+
+The behavior axis separates the families: at 2x effective compression the quant methods above lose 4-6 behavior points; the eviction presses at the same 2x lose 24 to 57 points on the identical cases, and Knorm scores below doing nothing at all. These same presses report near-lossless results on answer-level long-context suites; behavior collapses first. Regime caveat: these cases are 1-2k token agent-routing prompts, the short end of what eviction methods are designed for. AdaKV (SnapKV) is not scored: it requires flash-attention and degenerates under SDPA (harness limitation, not a method verdict).
+
+Throughput note: this stack's T is single-stream decode tok/s (transformers has no continuous batching); it is only comparable within this table, normalized to its own fp16 row.
+
 ## Method notes (scars included)
 
 - **Throughput**: vLLM's own `generation throughput` logger, steady-state windows only. Never client-side tokens/wall-clock: that probe under-counted 12x in our hands and produced a public claim we had to retract ([correction](https://github.com/huawei-csl/KVarN/pull/16)).
