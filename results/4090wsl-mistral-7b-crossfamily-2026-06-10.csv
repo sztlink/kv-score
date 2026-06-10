@@ -1,0 +1,7 @@
+model,config,router_exact,router_total
+mistral-7b-v0.3,fp16,84,120
+mistral-7b-v0.3,quantizedcache-quanto-int4,84,120
+mistral-7b-v0.3,snapkv-0.25,77,120
+mistral-7b-v0.3,snapkv-0.5,46,120
+mistral-7b-v0.3,snapkv-0.625,14,120
+mistral-7b-v0.3,snapkv-0.75,0,120
