@@ -65,7 +65,7 @@ Throughput note: this stack's T is single-stream decode tok/s (transformers has 
 
 ## Roadmap
 
-- kvpress presses (SnapKV, AdaKV, per-layer budget): the eviction/budget family.
+- AdaKV and the flash-attention presses (needs flash-attn on this rig).
 - KIVI (2-bit quant classic).
 - ReasonAlloc when code is released.
 - An R axis (robustness: degeneration rate on long generation).

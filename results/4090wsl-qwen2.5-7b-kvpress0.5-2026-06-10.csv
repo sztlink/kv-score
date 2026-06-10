@@ -1,5 +1,5 @@
 config,router_exact,router_total,tput_n128,kv_tokens
-baseline,98,120,44.5,1000
+fp16,98,120,44.5,1000
 snapkv,74,120,40.3,2000
 expected_attention,55,120,42.6,2000
 knorm,42,120,42.0,2000
