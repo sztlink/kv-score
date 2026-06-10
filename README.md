@@ -12,6 +12,14 @@ KV-Score = (Q × T × C)^(1/3)        each axis: 100 = fp16 parity, on YOUR rig
 
 Geometric mean on purpose: a method that wins capacity but collapses quality or throughput goes toward zero. You cannot buy score on one axis.
 
+**How to read it (two steps):** first filter by the axis your workload cannot give up, then rank by score. For agent workloads that filter is Q:
+
+- **Q >= 95**: behavior-safe. Rank these by score and pick.
+- **Q 75-95**: degraded. Only if your workload tolerates behavior drift.
+- **Q < 75**: broken for agent use, whatever the composite says.
+
+A score above 100 means "the capacity gain outweighs the loss IF you value all axes equally". Most workloads do not, and the bands are the honest correction for that.
+
 ## Run it
 
 ```
@@ -52,7 +60,7 @@ Reading: all three compressed configs land in a 122-135 band, by different route
 | ExpectedAttention | 56.1 | 95.7 | 200.0 | **102.4** |
 | Knorm | 42.9 | 94.4 | 200.0 | **93.2** |
 
-The behavior axis separates the families: at 2x effective compression the quant methods above lose 4-6 behavior points; the eviction presses at the same 2x lose 24 to 57 points on the identical cases, and Knorm scores below doing nothing at all. These same presses report near-lossless results on answer-level long-context suites; behavior collapses first. Regime caveat: these cases are 1-2k token agent-routing prompts, the short end of what eviction methods are designed for. AdaKV (SnapKV) is not scored: it requires flash-attention and degenerates under SDPA (harness limitation, not a method verdict).
+One-line version: at 2x compression, eviction breaks 24-57 behavior points where quant breaks 4-6, and answer-level suites do not see it. By the bands: every quant config above is behavior-safe (Q >= 94); SnapKV is degraded; ExpectedAttention and Knorm are broken for agent use, and Knorm scores below doing nothing at all. These same presses report near-lossless results on answer-level long-context suites; behavior collapses first. Regime caveat: these cases are 1-2k token agent-routing prompts, the short end of what eviction methods are designed for. AdaKV (SnapKV) is not scored: it requires flash-attention and degenerates under SDPA (harness limitation, not a method verdict).
 
 Throughput note: this stack's T is single-stream decode tok/s (transformers has no continuous batching); it is only comparable within this table, normalized to its own fp16 row.
 
