@@ -1,0 +1,5 @@
+model,config,router_exact,router_total
+qwen2.5-7b,fp16,98,120
+qwen2.5-7b,quantizedcache-quanto-int4,0,120
+qwen3-4b,fp16,107,120
+qwen3-4b,quantizedcache-quanto-int4,72,120
