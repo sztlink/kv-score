@@ -68,6 +68,14 @@ The cliff generalizes across model families: Qwen3-4B (baseline 107): 106 / 71 /
 
 Throughput note: this stack's T is single-stream decode tok/s (transformers has no continuous batching); it is only comparable within this table, normalized to its own fp16 row.
 
+## Overnight campaign additions (2026-06-11)
+
+- **The cliff is universal across eviction algorithms**: ratio curves for TOVA, KeyDiff, CUR, ExpectedAttention and Knorm all collapse between 0.375 and 0.625 on the same cases (`results/...eviction-curves...csv`). KeyDiff degrades most gracefully; none escapes the cliff.
+- **But the ranking is model-dependent**: the best press at 0.5 is SnapKV on Qwen2.5-7B, TOVA on Qwen3-4B, KeyDiff on Mistral-7B, and presses that survive one model collapse on another (Knorm: 42 on Qwen2.5, 2 on Qwen3-4B). There is no universal best eviction method; there is a universal cliff.
+- **Quant has family interactions too**: on Mistral-7B, KVarN holds behavior (k4v4 86/120 vs fp16 83) while TurboQuant k8v4 drops 20 points (63/120), the reverse sensitivity of the naive-int4 case. On Qwen2.5-14B-AWQ every method scores 118-120/120: the task saturates at 14B and stops discriminating.
+- **TriAttention (TurboQuant V3 eviction) measured for the first time on the behavior axis**: 102/120 at 1.4k context, identical to plain k8v4. Caveat: this context length may be below its eviction trigger; long-context runs needed before concluding anything.
+- AdaKV remains not-scored (flash-attn build did not finish in the campaign window). An R axis prototype (repetition rate) was inconclusive on short-form outputs and stays internal.
+
 ## Method notes (scars included)
 
 - **Throughput**: vLLM's own `generation throughput` logger, steady-state windows only. Never client-side tokens/wall-clock: that probe under-counted 12x in our hands and produced a public claim we had to retract ([correction](https://github.com/huawei-csl/KVarN/pull/16)).

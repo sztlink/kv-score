@@ -1,0 +1,5 @@
+config,router_exact,router_total,tput_n128,kv_tokens
+fp16,120,120,1192,49616
+kvarn-k4v2,120,120,,111744
+tq-k8v4,120,120,2298,114320
+tq-k4v2nc,118,120,1485,186672
