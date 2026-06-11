@@ -40,16 +40,49 @@ One rule: same model, same flags, same box for every row. fp16 on the same stack
 
 `results/` is the point of this repo. Each file is one rig's table: `results/<rig>-<model>-<date>.csv`. Send a PR with yours; the catalog of rigs is the product, not any single table. Methods score differently on native Linux vs WSL2, on a 4090 vs an H100; the honest question is "what should I run on MY hardware", and that table only you can produce.
 
-## Example: Qwen2.5-7B-Instruct, RTX 4090, WSL2, gmu 0.80
+## Quant methods: KVarN vs TurboQuant, full comparison
+
+The two production-grade vLLM KV-quant methods (Huawei's KVarN and TheTom's TurboQuant fork) measured head to head across three models on the same RTX 4090 / WSL2 rig, `gpu_memory_utilization 0.80`, engine-counter throughput, 120-case action-trace behavior probe.
+
+### Qwen2.5-7B-Instruct (Q = behavior, T = tok/s @ N=128, C = KV capacity, all vs fp16)
 
 | config | Q | T | C | KV-Score |
 |---|---|---|---|---|
 | fp16 (reference) | 100.0 | 100.0 | 100.0 | **100.0** |
 | KVarN k4v2_g128 | 96.0 | 91.0 | 257.2 | **131.0** |
+| KVarN k4v4_g128 | 102.0 | 87.1 | 153.3 | **110.9** |
+| KVarN k4v2_g64 | 93.0 | 78.9 | 235.3 | **120.0** |
+| KVarN k4v4_g64 | 100.0 | 70.5 | 183.7 | **109.0** |
 | TurboQuant k8v4 | 102.0 | 83.7 | 214.4 | **122.3** |
 | TurboQuant k4v2_nc | 94.0 | 80.6 | 322.0 | **134.6** |
+| TurboQuant k8v4 + TriAttention (V3) | 102.0 | 74.5 | 214.4 | **117.7** |
 
-Reading: all three compressed configs land in a 122-135 band, by different routes. TQ k8v4 holds behavior at full parity (102 is within ±1-case noise of 100) with 2.1x capacity. TQ k4v2_nc leads the composite via 3.2x capacity but pays 6 behavior points vs k8v4. KVarN k4v2 splits the difference: 91% throughput, 2.6x capacity, 4 behavior points. Which one wins depends on the axis your workload cannot give up; the composite only tells you none of them is dominated.
+Behavior is normalized to fp16 = 100 (raw fp16 is 100/120 here). All quant configs sit in a 110-135 band by different routes: TQ k4v2_nc leads on capacity (3.2x), KVarN k4v2 on the throughput/capacity balance, the k4v4 and k8v4 variants on behavior (full parity). None is dominated. TriAttention (TurboQuant V3 eviction) is measured here on the behavior axis for the first time: identical to plain k8v4 at this 1.4k-token context, which is likely below its eviction trigger; long-context runs are needed before reading anything into it.
+
+### Mistral-7B-Instruct-v0.3 (cross-family: the sensitivity reverses)
+
+| config | behavior (of 120) | vs fp16 |
+|---|---|---|
+| fp16 | 83 | reference |
+| KVarN k4v2_g128 | 79 | -4 |
+| KVarN k4v4_g128 | 86 | +3 |
+| TurboQuant k8v4 | 63 | **-20** |
+| TurboQuant k4v2_nc | 73 | -10 |
+
+On Mistral the picture flips: KVarN holds behavior (k4v4 even edges fp16) while TurboQuant k8v4 drops 20 points. On Qwen2.5-7B the two are near-tied. Neither quant method is family-neutral; the "winner" depends on the model's channel distribution.
+
+### Qwen2.5-14B-Instruct-AWQ (the probe saturates)
+
+| config | behavior (of 120) |
+|---|---|
+| fp16 | 120 |
+| KVarN k4v2_g128 | 120 |
+| TurboQuant k8v4 | 120 |
+| TurboQuant k4v2_nc | 118 |
+
+At 14B every method scores 118-120/120: the routing task stops discriminating. The behavior axis has resolving power at 4-8B and saturates by 14B, so the interesting comparisons live in the smaller models.
+
+Related: the original iso-bits quality comparison (gsm8k / MATH / HumanEval via lm-eval) and the full WSL throughput investigation live in [turboquant-cuda-bench](https://github.com/sztlink/turboquant-cuda-bench) and KVarN issues [#15](https://github.com/huawei-csl/KVarN/issues/15) / [#16](https://github.com/huawei-csl/KVarN/pull/16).
 
 ## Example 2: eviction family (kvpress @ compression_ratio 0.5), same model, same rig, transformers stack
 
