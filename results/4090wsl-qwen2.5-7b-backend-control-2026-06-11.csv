@@ -1,0 +1,4 @@
+config,attn,router_exact,router_total
+fp16,flash_attention_2,98,120
+snapkv@0.5,flash_attention_2,75,120
+snapkv@0.5,sdpa,74,120
