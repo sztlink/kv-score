@@ -1,0 +1,16 @@
+# Story 2.1 - R-probe (geracao longa, decode-horizon). 8 prompts content-rich, 1024 tok, temp0, chat.
+# LCP = longest common prefix (chars) vs fp16 do MESMO stack (baseline-por-stack). Fidelidade de trajetoria greedy.
+# distinct4/reprate = degeneracao (4-grams). PROTOTIPO, n=8, NAO publicar.
+modelo,preset,LCP_char_med,LCPfrac_med,distinct4_med,reprate_med
+Qwen2.5-7B,kvarn-k4v2,291,0.06,0.986,0.028
+Qwen2.5-7B,kvarn-k4v4,291,0.06,0.986,0.030
+Qwen2.5-7B,tq-k8v4,132,0.03,0.988,0.025
+Qwen2.5-7B,tq-k4v2nc,47,0.01,0.990,0.036
+Qwen2.5-14B-AWQ,kvarn-k4v2,1243,0.28,0.990,0.029
+Qwen2.5-14B-AWQ,kvarn-k4v4,1290,0.31,0.993,0.034
+Qwen2.5-14B-AWQ,tq-k8v4,96,0.02,0.986,0.037
+Qwen2.5-14B-AWQ,tq-k4v2nc,60,0.01,0.993,0.017
+# ACHADOS: (1) LCP DISCRIMINA no 14B onde Q satura (120/120) -> eixo R destrava grandes.
+# (2) Vantagem de fidelidade KVarN>>TQ AMPLIFICA com escala: ~2-6x (7B) -> ~13-20x (14B). KVarN k4v2(2bitV) > TQ k8v4(4bitV).
+# (3) DEGENERACAO NULA em todos (distinct4 ~0.98-0.99): "2-bit-V colapsa em repeticao" NAO reproduz no 1024tok.
+# CAVEATS: LCP=fidelidade-ao-argmax, NAO qualidade (pos-divergencia ambos coerentes). n=8. AWQ no 14B. Validar antes de qualquer claim.

@@ -1,0 +1,11 @@
+# KVarN k4v2 Qwen3-8B: prova de que o cap de concorrencia e' o clamp do pool fp16, TUNAVEL via gmu/KVARN_POOL_MEM_FRAC.
+# Burst sustentado 220-thread chat. cap = do warning 'capping max_num_seqs 256 -> N' (cuda.py:341).
+# usable_GB ~= gmu*24 - 14.27(pesos). T = mediana steady.
+gmu,pool_frac,cap_maxnumseqs,Running,T_tok_s,powerW,KVcache_tokens,usable_GB_aprox
+0.80,default,35,35,1320,270,51200,4.9
+0.90,default,70,70,2300,327,91520,7.3
+0.95,0.6,FAIL,NA,NA,NA,NA,NA
+# 0.95 falhou no check de free-memory do vLLM (pediu 22.79GB, 22.45 livres) - teto de gmu, nao do pool.
+# CONCLUSAO: cap ~ envelope pos-pesos; throughput recupera com o cap. Mas p/ igualar Running=200 do TQ
+# precisaria de ~25GB+ de usable -> impossivel num card de 24GB com pesos de 14.3GB. Entao no 8B/24GB o
+# teto de concorrencia do KVarN (design de sink-fp16-permanente) fica ABAIXO do TQ. Tradeoff real, tunavel ate' a parede de VRAM.

@@ -1,0 +1,12 @@
+# Story 1.0 - Qwen2.5-7B-Instruct - RE-MEDICAO com burst sustentado (220-thread). CORRIGE a coluna T da tabela canonica.
+# Q=router-120 completion double-pass. C=GPU KV tokens. T=engine steady, Running registrado. cap=warning KVarN.
+# fp16 baseline=100. hf-cache (a copia .cache/huggingface esta CORROMPIDA - layernorm faltando).
+preset,Q1,Q2,C_tokens,C_ratio,cap_maxnumseqs,Running,T_tok_s,T_vs_fp16,powerW
+fp16,97,98,78496,1.00,256,220,6730,100,448
+tq-k8v4,93,93,168304,2.14,256,220,5920,88,447
+tq-k4v2nc,90,88,252752,3.22,256,220,5650,84,449
+kvarn-k4v2,90,89,156032,1.99,163,163,5540,82,418
+kvarn-k4v4,99,97,120320,1.53,163,163,5520,82,411
+# ACHADOS: (1) cap KVarN no 7B=163 (vs 35 no 8B) -> slot fp16 barato (4kv-heads x 28L) -> throughput competitivo.
+# (2) T canonico antigo (kvarn 91 > tq 81-84) estava INVERTIDO pelo burst fraco; correto: TQ 88/84 >= KVarN 82.
+# (3) Q: kvarn-k4v4 lossless (97-99 = fp16 97-98), melhor comportamento; demais 88-93.

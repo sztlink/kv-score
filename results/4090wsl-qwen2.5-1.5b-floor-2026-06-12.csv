@@ -1,0 +1,14 @@
+# Story 1.3 - Qwen2.5-1.5B-Instruct (PISO; pivot de 0.5B que tem head_dim 64 = KVarN incompativel).
+# Q=router-120 CHAT mode double-pass (completion da 0/120 no 1.5B: fraco demais p/ formato cru).
+# PROBE PERTO DO PISO: fp16 so 16.5/120 (range limpo do probe = 4-8B). SNR baixo; kvarn>fp16 e' ruido.
+# T do grade anterior (completion burst) e' RUIDOSO no 1.5B (modelo pequeno, burst acaba rapido). C e cap solidos.
+# cap NAO morde (pesos ~3GB -> envelope enorme -> sem clamp, Running 220).
+preset,Q_chat_pass1,Q_chat_pass2,C_tokens,C_ratio,cap,T_tok_s_aprox
+fp16,16,17,581360,1.00,256(no-clamp),~17000
+kvarn-k4v2,20,19,2421120,4.16,256(no-clamp),~7000
+kvarn-k4v4,15,18,1867648,3.21,256(no-clamp),~7000
+tq-k8v4,14,14,1241440,2.13,256(no-clamp),~11000
+tq-k4v2nc,9,8,1864368,3.21,256(no-clamp),~8000
+# ACHADOS: (1) KVarN incompativel head_dim 64 (exclui Qwen2.5-0.5B e sub-1B). (2) probe floora <4B (1.5B fp16=16.5/120).
+# (3) no piso o TQ k4v2_nc (2-bit-V agressivo) cai p/ ~metade do fp16; KVarN + TQ k8v4 ficam no nivel -> agressivo machuca mais em escala pequena (direcional, SNR baixo).
+# (4) KVarN da capacidade enorme no 1.5B (k4v2 4.16x) e cap nao morde (pesos pequenos).

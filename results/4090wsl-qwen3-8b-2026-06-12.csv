@@ -1,0 +1,12 @@
+# Story 1.1 - Qwen3-8B - KVarN vs TurboQuant (vLLM, WSL2/4090, 2026-06-12)
+# MODE=chat(thinking-off). Q=action-router 120-case double-pass (melhor pass). C=GPU KV tokens (log).
+# T=sustained 200-thread chat burst, engine steady gen-throughput (CORRIGIDO: burst N=128 anterior subcontava).
+# CAVEAT CRITICO: KVarN trava em Running=35 / 220-280W (placa a meio gas) no Qwen3-8B com seu unico block_size valido (128; bs16 = no valid backend).
+# Causa do cap NAO confirmada (pool residuo fp16? integracao scheduler? Qwen3-8B-especifico?). NAO publicar como 'TQ vence KVarN'. Pergunta p/ Philippe.
+# fp16=baseline=100 nos 3 eixos. Score geo so como referencia; o cap de T domina e e' o ponto em aberto.
+preset,Q_raw,Qn,T_tok_s,Tn,C_tok,Cn,Running,powerW,KV-Score(geo),caveat
+fp16,119,100.0,4800,100.0,24896,100,200,448,100.0,
+kvarn-k4v2,117,98.3,1372,28.6,51200,206,35,270,83.3,THROUGHPUT-CAP-Running35-HALF-POWER-CAUSE-UNCONFIRMED
+kvarn-k4v4,117,98.3,1340,27.9,39552,159,35,270,75.8,THROUGHPUT-CAP-Running35-HALF-POWER-CAUSE-UNCONFIRMED
+tq-k8v4,116,97.5,4860,101.2,51792,208,200,448,127.1,saturates-GPU
+tq-k4v2nc,115,96.6,4750,99.0,81136,326,200,449,146.1,saturates-GPU
