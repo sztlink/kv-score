@@ -124,8 +124,9 @@ KV quantization succeeds or fails on how it handles outlier channels, not on the
 | KIVI (asymmetric, per-channel K / per-token V, fp16 residual) | 4 | **99** |
 | KIVI | 2 | 66 |
 | KVarN (Sinkhorn variance normalization) | 4 | 96-102 |
+| TurboQuant (near-optimal rotation) | ~4 (k4v2_nc) | 94 |
 
-At an identical 4-bit budget, naive int4 collapses to 0 while KIVI and KVarN are near-lossless. The difference is entirely the technique: KIVI's per-token V quantization plus an fp16 residual window, and KVarN's Sinkhorn normalization, both tame the outlier channels that naive per-channel quant amplifies. KIVI even at 2-bit (66) beats naive at 4-bit (0) by 66 points.
+At an identical ~4-bit budget, naive int4 collapses to 0 while KIVI, KVarN and TurboQuant are all near-lossless. The difference is entirely the technique: KIVI's per-token V quantization plus an fp16 residual window, and KVarN's Sinkhorn normalization, both tame the outlier channels that naive per-channel quant amplifies. KIVI even at 2-bit (66) beats naive at 4-bit (0) by 66 points.
 
 ### Mistral-7B-Instruct-v0.3 (well-behaved: outlier handling is unneeded)
 
@@ -136,8 +137,10 @@ At an identical 4-bit budget, naive int4 collapses to 0 while KIVI and KVarN are
 | KIVI | 4 | 74 |
 | KIVI | 2 | 71 |
 | KVarN k4v4 | 4 | 86 |
+| TurboQuant k8v4 | 8/4 | 63 |
+| TurboQuant k4v2_nc | ~4 | 73 |
 
-On Mistral the outlier problem does not exist: naive int4 is already lossless, and KIVI is slightly worse (its aggressive scheme costs a little where it buys nothing). Outlier handling is insurance you only need on outlier-heavy models.
+On Mistral the outlier problem does not exist: naive int4 is already lossless, and KIVI is slightly worse. The striking reversal: TurboQuant, which is near-lossless on Qwen2.5, drops 20 points here (k8v4 63 vs fp16 83), the exact mirror of naive int4. Every method has a model family it dislikes; KIVI and KVarN are the most family-robust across these two. (The TurboQuant-on-Mistral drop is large enough to warrant a re-check before over-reading it.) (its aggressive scheme costs a little where it buys nothing). Outlier handling is insurance you only need on outlier-heavy models.
 
 KIVI was run via its own Triton kernels (group_size 64, fp16 residual 128) on Mistral natively and on Qwen2.5 through a port of its Mistral attention monkeypatch (Qwen2 adds q/k/v bias; otherwise sibling architectures). Behavior axis only; not a throughput claim.
 
