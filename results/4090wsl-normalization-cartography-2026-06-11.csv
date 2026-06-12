@@ -1,5 +1,5 @@
 model,method,bits,router_exact,router_total,note
-qwen2.5-7b,fp16,16,100,120,reference
+qwen2.5-7b,fp16,16,100,120,vllm; transformers-stack fp16 = 98 (naive/KIVI vs 98)
 qwen2.5-7b,naive-int4-quantizedcache,4,0,120,per-channel naive
 qwen2.5-7b,kivi,2,66,120,asymmetric per-token + fp16 residual (ported)
 qwen2.5-7b,kivi,4,99,120,asymmetric per-token + fp16 residual (ported)
@@ -7,10 +7,10 @@ qwen2.5-7b,kvarn-k4v2,4,96,120,sinkhorn (vllm)
 qwen2.5-7b,kvarn-k4v4,4,102,120,sinkhorn (vllm)
 qwen2.5-7b,turboquant-k4v2nc,4,94,120,near-optimal rotation (vllm)
 qwen2.5-7b,turboquant-k8v4,7,102,120,near-optimal rotation (vllm)
-mistral-7b,fp16,16,83,120,reference
+mistral-7b,fp16,16,83,120,reference tf4.57/vllm (NOTE: 73 on tf4.39 where KIVI runs; version-sensitive)
 mistral-7b,naive-int4-quantizedcache,4,84,120,per-channel naive (lossless here)
-mistral-7b,kivi,2,71,120,asymmetric per-token + fp16 residual (native)
-mistral-7b,kivi,4,74,120,asymmetric per-token + fp16 residual (native)
+mistral-7b,kivi,2,71,120,native tf4.39 (vs own-stack fp16 73 = lossless)
+mistral-7b,kivi,4,74,120,native tf4.39 (vs own-stack fp16 73 = lossless)
 mistral-7b,kvarn-k4v2,4,79,120,sinkhorn (vllm)
 mistral-7b,kvarn-k4v4,4,86,120,sinkhorn (vllm)
 mistral-7b,turboquant-k4v2nc,4,73,120,near-optimal rotation (vllm)

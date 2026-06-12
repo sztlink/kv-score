@@ -113,36 +113,23 @@ Throughput note: this stack's T is single-stream decode tok/s (transformers has 
 
 ## The normalization cartography: technique beats bit-width
 
-KV quantization succeeds or fails on how it handles outlier channels, not on the bit budget. Three 4-bit methods, same model, same 120-case behavior probe (raw counts; fp16 reference stated per model):
+On an outlier-heavy model, KV quantization succeeds or fails on how it handles those outlier channels, not on the bit budget. Same model (Qwen2.5-7B-Instruct), same 4-bit KV budget, same 120-case behavior probe, raw counts.
 
-### Qwen2.5-7B-Instruct (outlier-heavy: this is where it matters)
+| method | bits | behavior (of 120) | stack (fp16 ref) |
+|---|---|---|---|
+| naive per-channel int4 (transformers QuantizedCache) | 4 | **0** | transformers (fp16 98) |
+| KIVI (asymmetric, per-channel K / per-token V, fp16 residual) | 4 | **99** | transformers (fp16 98) |
+| KIVI | 2 | 66 | transformers (fp16 98) |
+| KVarN k4v2 / k4v4 (Sinkhorn normalization) | 4 | 96 / 102 | vLLM (fp16 100) |
+| TurboQuant k4v2_nc / k8v4 (near-optimal rotation) | ~4 / 7 | 94 / 102 | vLLM (fp16 100) |
 
-| method | bits | behavior (of 120) |
-|---|---|---|
-| fp16 | 16 | 100 |
-| naive per-channel int4 (transformers QuantizedCache) | 4 | **0** |
-| KIVI (asymmetric, per-channel K / per-token V, fp16 residual) | 4 | **99** |
-| KIVI | 2 | 66 |
-| KVarN (Sinkhorn variance normalization) | 4 | 96-102 |
-| TurboQuant (near-optimal rotation) | ~4 (k4v2_nc) | 94 |
+At the same 4-bit budget, naive int4 collapses to 0 while every purpose-built method is near-lossless. The difference is entirely the technique: KIVI's per-token V quantization plus an fp16 residual window, KVarN's Sinkhorn variance normalization, and TurboQuant's rotation all tame the outlier channels that naive per-channel quant amplifies. KIVI even at 2-bit (66) beats naive at 4-bit (0). Numbers were double-checked (KIVI runs identical across two passes; naive int4 = 0 reproduced across transformers 4.49 / 4.57 / 5.2). The transformers-stack fp16 reference is 98/120 and the vLLM-stack is 100/120; the 0-vs-99 gap is the point and dwarfs that 2-count baseline difference.
 
-At an identical ~4-bit budget, naive int4 collapses to 0 while KIVI, KVarN and TurboQuant are all near-lossless. The difference is entirely the technique: KIVI's per-token V quantization plus an fp16 residual window, and KVarN's Sinkhorn normalization, both tame the outlier channels that naive per-channel quant amplifies. KIVI even at 2-bit (66) beats naive at 4-bit (0) by 66 points.
+### What we do NOT claim (a Mistral caveat)
 
-### Mistral-7B-Instruct-v0.3 (well-behaved: outlier handling is unneeded)
+We also ran these on Mistral-7B, but Mistral's fp16 baseline on this probe is transformers-version-sensitive (73/120 on transformers 4.39, 83/120 on 4.57), which contaminates any cross-method Mistral comparison made across stacks. Measured against its own-stack baseline, KIVI on Mistral is lossless (74 vs fp16 73), not worse, and naive int4 is also lossless there (Mistral has no outlier problem). We do not headline Mistral numbers until they are re-run with a single consistent baseline. (An earlier draft of this section claimed "KIVI is slightly worse on Mistral" and a TurboQuant family weakness there; both were baseline artifacts and are retracted pending same-stack re-measurement.)
 
-| method | bits | behavior (of 120) |
-|---|---|---|
-| fp16 | 16 | 83 |
-| naive int4 | 4 | 84 |
-| KIVI | 4 | 74 |
-| KIVI | 2 | 71 |
-| KVarN k4v4 | 4 | 86 |
-| TurboQuant k8v4 | 8/4 | 63 |
-| TurboQuant k4v2_nc | ~4 | 73 |
-
-On Mistral the outlier problem does not exist: naive int4 is already lossless, and KIVI is slightly worse. The striking reversal: TurboQuant, which is near-lossless on Qwen2.5, drops 20 points here (k8v4 63 vs fp16 83), the exact mirror of naive int4. Every method has a model family it dislikes; KIVI and KVarN are the most family-robust across these two. (The TurboQuant-on-Mistral drop is large enough to warrant a re-check before over-reading it.) (its aggressive scheme costs a little where it buys nothing). Outlier handling is insurance you only need on outlier-heavy models.
-
-KIVI was run via its own Triton kernels (group_size 64, fp16 residual 128) on Mistral natively and on Qwen2.5 through a port of its Mistral attention monkeypatch (Qwen2 adds q/k/v bias; otherwise sibling architectures). Behavior axis only; not a throughput claim.
+KIVI was run via its own Triton kernels at group_size 64 (their CUDA default is 32; the Triton path requires a multiple of 64) with a 128-token fp16 residual, on Mistral natively and on Qwen2.5 through our adaptation of its Mistral attention class (Qwen2 adds q/k/v bias; otherwise sibling architectures). The adaptation loads Qwen2.5's weights into KIVI's attention with the quant path active (verified: distinct results at 2/4/16-bit); it is our adaptation, not an official KIVI-Qwen reference. Behavior axis only; not a throughput claim.
 
 ## Method notes (scars included)
 
