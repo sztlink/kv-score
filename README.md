@@ -111,6 +111,36 @@ Throughput note: this stack's T is single-stream decode tok/s (transformers has 
 
 - **AdaKV: not scored, reproduced integration failure.** The kvpress AdaKV wrappers (head-wise budget reallocation) degenerate to repeated-token gibberish (`FINAL!!!!!!`) on Qwen2.5-7B under BOTH `sdpa` and `flash_attention_2` (2.8.3), while the SnapKV scorer they wrap is clean (75/120) on the same backend. CriticalAdaKV separately errors on `Qwen2Config.head_dim`. The base methods work; the AdaKV adapter layer does not, on this transformers+kvpress version. Not a behavioral verdict.
 
+## The normalization cartography: technique beats bit-width
+
+KV quantization succeeds or fails on how it handles outlier channels, not on the bit budget. Three 4-bit methods, same model, same 120-case behavior probe (raw counts; fp16 reference stated per model):
+
+### Qwen2.5-7B-Instruct (outlier-heavy: this is where it matters)
+
+| method | bits | behavior (of 120) |
+|---|---|---|
+| fp16 | 16 | 100 |
+| naive per-channel int4 (transformers QuantizedCache) | 4 | **0** |
+| KIVI (asymmetric, per-channel K / per-token V, fp16 residual) | 4 | **99** |
+| KIVI | 2 | 66 |
+| KVarN (Sinkhorn variance normalization) | 4 | 96-102 |
+
+At an identical 4-bit budget, naive int4 collapses to 0 while KIVI and KVarN are near-lossless. The difference is entirely the technique: KIVI's per-token V quantization plus an fp16 residual window, and KVarN's Sinkhorn normalization, both tame the outlier channels that naive per-channel quant amplifies. KIVI even at 2-bit (66) beats naive at 4-bit (0) by 66 points.
+
+### Mistral-7B-Instruct-v0.3 (well-behaved: outlier handling is unneeded)
+
+| method | bits | behavior (of 120) |
+|---|---|---|
+| fp16 | 16 | 83 |
+| naive int4 | 4 | 84 |
+| KIVI | 4 | 74 |
+| KIVI | 2 | 71 |
+| KVarN k4v4 | 4 | 86 |
+
+On Mistral the outlier problem does not exist: naive int4 is already lossless, and KIVI is slightly worse (its aggressive scheme costs a little where it buys nothing). Outlier handling is insurance you only need on outlier-heavy models.
+
+KIVI was run via its own Triton kernels (group_size 64, fp16 residual 128) on Mistral natively and on Qwen2.5 through a port of its Mistral attention monkeypatch (Qwen2 adds q/k/v bias; otherwise sibling architectures). Behavior axis only; not a throughput claim.
+
 ## Method notes (scars included)
 
 - **Throughput**: vLLM's own `generation throughput` logger, steady-state windows only. Never client-side tokens/wall-clock: that probe under-counted 12x in our hands and produced a public claim we had to retract ([correction](https://github.com/huawei-csl/KVarN/pull/16)).
