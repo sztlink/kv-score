@@ -1,8 +1,13 @@
-# Determinism control for the fidelity (R) axis. Qwen2.5-7B, temp0, 1024 tok, chat, 8 prompts.
-# Each stack served fp16 TWICE (separate serves) to test reproducibility. If fp16-vs-fp16 LCP = full length,
-# the stack is deterministic and the method-vs-fp16 LCP measures KV quantization, not stack noise.
-stack,fp16_vs_fp16_identical,det_lcp_chars_per_prompt,fidelity_lcp_median,fidelity_metric
-KVarN,8/8 (full-length),"5596;3644;4646;4521;4494;4762;4675;4487",446,fp16_A vs kvarn_k4v2
-TurboQuant,8/8 (full-length),"5540;3935;4169;3979;4485;4318;4762;4476",131,fp16_A vs tq_k8v4
-# RESULT: both stacks fully deterministic (8/8 identical fp16 across separate serves).
-# The fidelity finding (KVarN holds the fp16 path far longer than TurboQuant) is the KV-quant effect, not stack non-determinism.
+# Determinism control for the fidelity (R) axis. Each stack served fp16 TWICE (separate serves); LCP(fp16_A, fp16_B)
+# is the fp16 self-agreement floor. The R/LCP fidelity numbers are valid only where this floor sits ABOVE them
+# (the quant diverges before non-determinism would). temp0, chat, fp16 greedy.
+model,stack,fp16_self_floor_lcp_median_chars,fp16_identical,measured_fidelity_lcp_median,verdict
+Qwen2.5-7B,KVarN(KVENV),4583,8/8,601,VALID (fully deterministic)
+Qwen2.5-7B,TurboQuant(TQENV),4397,8/8,134,VALID (fully deterministic)
+Qwen2.5-14B-AWQ,KVarN(KVENV),2954,4/8,1024,VALID (floor >> fidelity)
+Qwen2.5-14B-AWQ,TurboQuant(TQENV),2051,3/8,199,VALID (floor >> fidelity)
+Qwen3-8B,KVarN(KVENV),621,0/28,471-574,INVALID (floor ~= fidelity, noise-capped) -> EXCLUDED
+Qwen3-8B,TurboQuant(TQENV),3942,1/28,35-101,(stack ok, but pair excluded with KVarN side)
+# CONCLUSION: fidelity finding holds at 7B (deterministic) and 14B-AWQ (floor well above the numbers).
+# Qwen3-8B EXCLUDED: the KVarN build is non-deterministic on Qwen3-8B (fp16 self-floor ~620), which caps the measurement.
+# Mistral: determinism not yet controlled -> not reported.
