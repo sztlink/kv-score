@@ -1,0 +1,8 @@
+# Determinism control for the fidelity (R) axis. Qwen2.5-7B, temp0, 1024 tok, chat, 8 prompts.
+# Each stack served fp16 TWICE (separate serves) to test reproducibility. If fp16-vs-fp16 LCP = full length,
+# the stack is deterministic and the method-vs-fp16 LCP measures KV quantization, not stack noise.
+stack,fp16_vs_fp16_identical,det_lcp_chars_per_prompt,fidelity_lcp_median,fidelity_metric
+KVarN,8/8 (full-length),"5596;3644;4646;4521;4494;4762;4675;4487",446,fp16_A vs kvarn_k4v2
+TurboQuant,8/8 (full-length),"5540;3935;4169;3979;4485;4318;4762;4476",131,fp16_A vs tq_k8v4
+# RESULT: both stacks fully deterministic (8/8 identical fp16 across separate serves).
+# The fidelity finding (KVarN holds the fp16 path far longer than TurboQuant) is the KV-quant effect, not stack non-determinism.
