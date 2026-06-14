@@ -22,22 +22,31 @@ buun's two-way caution ("trajectory fidelity is not decision goodness" and the
 symmetric "routing decision is not fidelity goodness") is exactly this split. It
 was measured before the conversation.
 
-## The dissociation, in data, both directions
+## The dissociation: one direction holds, one was seed noise
 
 The AIME24 answer-trajectory atlas
 ([`06-publicable/kvfidelity/2026-05-trace-atlas-v4`](https://github.com/sztlink/turboquant-cuda-bench/tree/main/06-publicable/kvfidelity/2026-05-trace-atlas-v4),
-decomposed into Discovery / Retention / Closure across KV configs) shows both
-halves of buun's symmetry:
+decomposed into Discovery / Retention / Closure) was single-seed. @spiritbuun
+flagged that AIME per-case results flip across seeds, so I re-ran the 30 problems
+at 3 seeds, temp 0.3 (qwen3:8b). **25 of 30 flip answer across seeds.** That
+verdict:
 
-- **Trajectory faithful, decision wrong** (idx9, FullKV-4096): the correct answer
-  `116` is emitted nine times late in the trajectory, then the run closes on `4`.
-  See `08_label_birth_idx09_fullkv_4096.png` and
-  `05-analysis/kvfidelity/2026-05-15-label-review-addendum-v0.md`.
-- **Trajectory garbage, decision right** (idx7): a fully degenerate
-  repetition-loop trajectory still lands `25`.
+- **Trajectory faithful, decision wrong** (the idx9 direction): still holds, but
+  the clean evidence is *not* the single AIME case. It is the decoy-retrieval
+  task where the model retrieves the canonical chunk (8/8) yet commits to the
+  decoy (5/8), replicated across three stacks with a byte-identical wrong answer
+  (`bench-public/vllm-cross-stack/decoy-replay-results.md`). That is the
+  seed-noise-free version of "fidelity is not decision goodness."
+- **Trajectory garbage, decision right** (idx7): **retired.** In the re-run idx7
+  is right 2 of 3 (`25, 25, 100`). The single-seed "decision right despite a
+  degenerate trajectory" was mostly the seed, not a robust property. The
+  symmetric direction has no clean evidence; do not claim it.
 
-Caveat carried from that work: it is n=30, single-seed, extractor-labeled.
-Treat as a demonstrated phenomenon, not a calibrated rate.
+Methodology carried from this: AIME per-case results are seed-sensitive (25/30
+flip at temp 0.3), so any per-case claim needs a seed sweep first. The general
+split (fidelity and task accuracy are *separable measurements*) stands on the
+cross-stack decoy data, not on single AIME cases. Re-run data:
+`results/aime-seed-flip-2026-06-14.json` in this repo.
 
 ## The cap mechanism is net-new; the asymmetry is confirmed at the kernel
 
