@@ -34,8 +34,14 @@ decision accuracy:
 | 32768 | 1.0 | 1.0 | 1.0 | 0.4 |
 
 f16, turbo4, turbo3 hold across depth. turbo2 (the most aggressive, 2-bit values) holds to
-16k then drops to 0.4 at 32k. The failures are value corruption (digit flips, hallucinated
-words, blanks), not decoy confusion (decoy_rate stays ~0).
+16k then drops to 0.4 at 32k.
+
+> CORRECTION 2026-06-20: an earlier version of this file claimed the failures are "value
+> corruption, not decoy confusion (decoy_rate stays ~0)". The CSV contradicts that: decoy_rate
+> reaches 0.2 in several cells (turbo2@4k, turbo3@4k, turbo2@32k in the N=5 depth curve) and
+> 0.062 for Mistral-turbo3@32k. The per-case outputs of the 9/16 turbo2@32k failures were never
+> dumped, so the failure mode (digit-flip vs decoy-pickup vs blank vs regex-extraction artifact)
+> is NOT established. Treat the mechanism as open until the per-case dump is run.
 
 ## Confirmation at 32k (Llama-3.1-8B, N=16)
 
