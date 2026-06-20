@@ -1,0 +1,434 @@
+START Sat Jun 20 19:23:17 UTC 2026
+GPU: 61 MiB
+=== SWEEP knee: f16+turbo2(OFF) depths 8k/16k/24k/32k NPOS=8 ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepC-dump.jsonl
+depth=8192 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=8192 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9221-FOXTROT C=9221-FOXTROT rc=0
+depth=8192 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2936-MIKE C=2936-MIKE rc=0
+depth=8192 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5066-BRAVO C=5066-BRAVO rc=0
+depth=8192 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2154-MIKE C=2154-MIKE rc=0
+depth=8192 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6298-LIMA C=6298-LIMA rc=0
+depth=8192 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7861-DELTA C=7861-DELTA rc=0
+depth=8192 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9253-LIMA C=9253-LIMA rc=0
+>>> CELL stepC-sweep pseed=42 depth=8192 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=115.8 vram=6443
+depth=8192 kv=turbo2 pos=0.03 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=9935-LIMA rc=0
+depth=8192 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9221-FOXTROT C=9221-FOXTROT rc=0
+depth=8192 kv=turbo2 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2936-MIKE C=2936-MIKE rc=0
+depth=8192 kv=turbo2 pos=0.42 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=5066-BRAVO rc=0
+depth=8192 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=True digit_err=4 lev=9 ans=7678-BRAVO C=2154-MIKE rc=0
+depth=8192 kv=turbo2 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6298-LIMA C=6298-LIMA rc=0
+depth=8192 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7861-DELTA C=7861-DELTA rc=0
+depth=8192 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9253-LIMA C=9253-LIMA rc=0
+>>> CELL stepC-sweep pseed=42 depth=8192 kv=turbo2 decision=0.625 decoy=0.125 mDigitErr=1.5 mLev=3.5 malformed=0.375 adapt='' tok/s=113.7 vram=5335
+depth=16384 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3575-ECHO C=3575-ECHO rc=0
+depth=16384 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4272-INDIA C=4272-INDIA rc=0
+depth=16384 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5569-FOXTROT C=5569-FOXTROT rc=0
+depth=16384 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2967-HOTEL C=2967-HOTEL rc=0
+depth=16384 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8423-ALPHA C=8423-ALPHA rc=0
+depth=16384 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8218-LIMA C=8218-LIMA rc=0
+depth=16384 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6122-JULIET C=6122-JULIET rc=0
+depth=16384 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4477-LIMA C=4477-LIMA rc=0
+>>> CELL stepC-sweep pseed=42 depth=16384 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=106.0 vram=7467
+depth=16384 kv=turbo2 pos=0.03 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=3575-ECHO rc=0
+depth=16384 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4272-INDIA C=4272-INDIA rc=0
+depth=16384 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=False digit_err=4 lev=12 ans=None C=5569-FOXTROT rc=0
+depth=16384 kv=turbo2 pos=0.42 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=2967-HOTEL rc=0
+depth=16384 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=0 lev=5 ans=8423-ORION C=8423-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8218-LIMA C=8218-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6122-JULIET C=6122-JULIET rc=0
+depth=16384 kv=turbo2 pos=0.94 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=4477-LIMA rc=0
+>>> CELL stepC-sweep pseed=42 depth=16384 kv=turbo2 decision=0.375 decoy=0.0 mDigitErr=2.0 mLev=5.625 malformed=0.5 adapt='' tok/s=108.4 vram=5471
+depth=24576 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5164-DELTA C=5164-DELTA rc=0
+depth=24576 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6371-BRAVO C=6371-BRAVO rc=0
+depth=24576 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5490-BRAVO C=5490-BRAVO rc=0
+depth=24576 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7389-JULIET C=7389-JULIET rc=0
+depth=24576 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5665-LIMA C=5665-LIMA rc=0
+depth=24576 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4775-INDIA C=4775-INDIA rc=0
+depth=24576 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1833-LIMA C=1833-LIMA rc=0
+depth=24576 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6654-MIKE C=6654-MIKE rc=0
+>>> CELL stepC-sweep pseed=42 depth=24576 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=93.9 vram=8497
+depth=24576 kv=turbo2 pos=0.03 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=5164-DELTA rc=0
+depth=24576 kv=turbo2 pos=0.16 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=6371-BRAVO rc=0
+depth=24576 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=5490-BRAVO rc=0
+depth=24576 kv=turbo2 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7389-JULIET C=7389-JULIET rc=0
+depth=24576 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=True digit_err=4 lev=8 ans=6028-INDIA C=5665-LIMA rc=0
+depth=24576 kv=turbo2 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4775-INDIA C=4775-INDIA rc=0
+depth=24576 kv=turbo2 pos=0.81 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=1833-LIMA rc=0
+depth=24576 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6654-MIKE C=6654-MIKE rc=0
+>>> CELL stepC-sweep pseed=42 depth=24576 kv=turbo2 decision=0.375 decoy=0.125 mDigitErr=2.5 mLev=5.875 malformed=0.625 adapt='' tok/s=95.3 vram=5613
+depth=32768 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7949-GOLF C=7949-GOLF rc=0
+depth=32768 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4065-KILO C=4065-KILO rc=0
+depth=32768 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2638-INDIA C=2638-INDIA rc=0
+depth=32768 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3292-BRAVO C=3292-BRAVO rc=0
+depth=32768 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6294-JULIET C=6294-JULIET rc=0
+depth=32768 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6822-HOTEL C=6822-HOTEL rc=0
+depth=32768 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3374-HOTEL C=3374-HOTEL rc=0
+depth=32768 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3258-KILO C=3258-KILO rc=0
+>>> CELL stepC-sweep pseed=42 depth=32768 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=83.0 vram=9515
+depth=32768 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7949-GOLF C=7949-GOLF rc=0
+depth=32768 kv=turbo2 pos=0.16 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=4065-KILO rc=0
+depth=32768 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=False digit_err=4 lev=4 ans=4867-INDIA C=2638-INDIA rc=0
+depth=32768 kv=turbo2 pos=0.42 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=3292-BRAVO rc=0
+depth=32768 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=4 lev=11 ans=None C=6294-JULIET rc=0
+depth=32768 kv=turbo2 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6822-HOTEL C=6822-HOTEL rc=0
+depth=32768 kv=turbo2 pos=0.81 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=3374-HOTEL rc=0
+depth=32768 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3258-KILO C=3258-KILO rc=0
+>>> CELL stepC-sweep pseed=42 depth=32768 kv=turbo2 decision=0.375 decoy=0.0 mDigitErr=2.5 mLev=5.5 malformed=0.625 adapt='' tok/s=91.6 vram=5743
+
+===== SUMMARY =====
+[
+ {
+  "tag": "stepC-sweep",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 8192,
+  "kv": "f16",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 115.8,
+  "peak_vram_mib": 6443
+ },
+ {
+  "tag": "stepC-sweep",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 8192,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.625,
+  "decision_acc": 0.625,
+  "decoy_rate": 0.125,
+  "mean_digit_err": 1.5,
+  "mean_lev": 3.5,
+  "malformed_rate": 0.375,
+  "adapt": "",
+  "tok_s": 113.7,
+  "peak_vram_mib": 5335
+ },
+ {
+  "tag": "stepC-sweep",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 16384,
+  "kv": "f16",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 106.0,
+  "peak_vram_mib": 7467
+ },
+ {
+  "tag": "stepC-sweep",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 16384,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.375,
+  "decision_acc": 0.375,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 2.0,
+  "mean_lev": 5.625,
+  "malformed_rate": 0.5,
+  "adapt": "",
+  "tok_s": 108.4,
+  "peak_vram_mib": 5471
+ },
+ {
+  "tag": "stepC-sweep",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 24576,
+  "kv": "f16",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 93.9,
+  "peak_vram_mib": 8497
+ },
+ {
+  "tag": "stepC-sweep",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 24576,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.375,
+  "decision_acc": 0.375,
+  "decoy_rate": 0.125,
+  "mean_digit_err": 2.5,
+  "mean_lev": 5.875,
+  "malformed_rate": 0.625,
+  "adapt": "",
+  "tok_s": 95.3,
+  "peak_vram_mib": 5613
+ },
+ {
+  "tag": "stepC-sweep",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "f16",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 83.0,
+  "peak_vram_mib": 9515
+ },
+ {
+  "tag": "stepC-sweep",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.375,
+  "decision_acc": 0.375,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 2.5,
+  "mean_lev": 5.5,
+  "malformed_rate": 0.625,
+  "adapt": "",
+  "tok_s": 91.6,
+  "peak_vram_mib": 5743
+ }
+]
+=== NOISE FLOOR: prompt-seed 1/2/3 @32k f16+turbo2(OFF) NPOS=8 ===
+# PROMPT_SEED=1 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepC-dump.jsonl
+depth=32768 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7219-DELTA C=7219-DELTA rc=0
+depth=32768 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1185-FOXTROT C=1185-FOXTROT rc=0
+depth=32768 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5995-ECHO C=5995-ECHO rc=0
+depth=32768 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8989-DELTA C=8989-DELTA rc=0
+depth=32768 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2608-ECHO C=2608-ECHO rc=0
+depth=32768 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5631-FOXTROT C=5631-FOXTROT rc=0
+depth=32768 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6881-ECHO C=6881-ECHO rc=0
+depth=32768 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1555-HOTEL C=1555-HOTEL rc=0
+>>> CELL stepC-seed1 pseed=1 depth=32768 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=84.3 vram=9521
+depth=32768 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7219-DELTA C=7219-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1185-FOXTROT C=1185-FOXTROT rc=0
+depth=32768 kv=turbo2 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5995-ECHO C=5995-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8989-DELTA C=8989-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=2608-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.68 correct=False retrieved=False decoyhit=False digit_err=4 lev=12 ans=None C=5631-FOXTROT rc=0
+depth=32768 kv=turbo2 pos=0.81 correct=False retrieved=False decoyhit=False digit_err=4 lev=8 ans=2117-DELTA C=6881-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1555-HOTEL C=1555-HOTEL rc=0
+>>> CELL stepC-seed1 pseed=1 depth=32768 kv=turbo2 decision=0.625 decoy=0.0 mDigitErr=1.5 mLev=3.625 malformed=0.375 adapt='' tok/s=97.1 vram=5749
+
+===== SUMMARY =====
+[
+ {
+  "tag": "stepC-seed1",
+  "pseed": 1,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "f16",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 84.3,
+  "peak_vram_mib": 9521
+ },
+ {
+  "tag": "stepC-seed1",
+  "pseed": 1,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.625,
+  "decision_acc": 0.625,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 1.5,
+  "mean_lev": 3.625,
+  "malformed_rate": 0.375,
+  "adapt": "",
+  "tok_s": 97.1,
+  "peak_vram_mib": 5749
+ }
+]
+# PROMPT_SEED=2 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepC-dump.jsonl
+depth=32768 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4476-ALPHA C=4476-ALPHA rc=0
+depth=32768 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1682-LIMA C=1682-LIMA rc=0
+depth=32768 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9492-GOLF C=9492-GOLF rc=0
+depth=32768 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7451-INDIA C=7451-INDIA rc=0
+depth=32768 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1702-ECHO C=1702-ECHO rc=0
+depth=32768 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6797-LIMA C=6797-LIMA rc=0
+depth=32768 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4436-FOXTROT C=4436-FOXTROT rc=0
+depth=32768 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8495-KILO C=8495-KILO rc=0
+>>> CELL stepC-seed2 pseed=2 depth=32768 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=87.3 vram=9521
+depth=32768 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4476-ALPHA C=4476-ALPHA rc=0
+depth=32768 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1682-LIMA C=1682-LIMA rc=0
+depth=32768 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=9492-GOLF rc=0
+depth=32768 kv=turbo2 pos=0.42 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=7451-INDIA rc=0
+depth=32768 kv=turbo2 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1702-ECHO C=1702-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.68 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=6797-LIMA rc=0
+depth=32768 kv=turbo2 pos=0.81 correct=False retrieved=False decoyhit=False digit_err=4 lev=12 ans=None C=4436-FOXTROT rc=0
+depth=32768 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8495-KILO C=8495-KILO rc=0
+>>> CELL stepC-seed2 pseed=2 depth=32768 kv=turbo2 decision=0.5 decoy=0.0 mDigitErr=2.0 mLev=5.0 malformed=0.5 adapt='' tok/s=96.3 vram=5749
+
+===== SUMMARY =====
+[
+ {
+  "tag": "stepC-seed2",
+  "pseed": 2,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "f16",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 87.3,
+  "peak_vram_mib": 9521
+ },
+ {
+  "tag": "stepC-seed2",
+  "pseed": 2,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.5,
+  "decision_acc": 0.5,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 2.0,
+  "mean_lev": 5.0,
+  "malformed_rate": 0.5,
+  "adapt": "",
+  "tok_s": 96.3,
+  "peak_vram_mib": 5749
+ }
+]
+# PROMPT_SEED=3 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepC-dump.jsonl
+depth=32768 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1215-ECHO C=1215-ECHO rc=0
+depth=32768 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8988-ALPHA C=8988-ALPHA rc=0
+depth=32768 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6072-FOXTROT C=6072-FOXTROT rc=0
+depth=32768 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6341-JULIET C=6341-JULIET rc=0
+depth=32768 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6427-LIMA C=6427-LIMA rc=0
+depth=32768 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6726-HOTEL C=6726-HOTEL rc=0
+depth=32768 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2062-HOTEL C=2062-HOTEL rc=0
+depth=32768 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4384-BRAVO C=4384-BRAVO rc=0
+>>> CELL stepC-seed3 pseed=3 depth=32768 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=87.5 vram=9515
+depth=32768 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1215-ECHO C=1215-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.16 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=8988-ALPHA rc=0
+depth=32768 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=False digit_err=4 lev=12 ans=None C=6072-FOXTROT rc=0
+depth=32768 kv=turbo2 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6341-JULIET C=6341-JULIET rc=0
+depth=32768 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=4 lev=7 ans=1689-ALPHA C=6427-LIMA rc=0
+depth=32768 kv=turbo2 pos=0.68 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=6726-HOTEL rc=0
+depth=32768 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2062-HOTEL C=2062-HOTEL rc=0
+depth=32768 kv=turbo2 pos=0.94 correct=False retrieved=False decoyhit=False digit_err=1 lev=1 ans=4382-BRAVO C=4384-BRAVO rc=0
+>>> CELL stepC-seed3 pseed=3 depth=32768 kv=turbo2 decision=0.375 decoy=0.0 mDigitErr=2.125 mLev=5.0 malformed=0.5 adapt='' tok/s=90.8 vram=5749
+
+===== SUMMARY =====
+[
+ {
+  "tag": "stepC-seed3",
+  "pseed": 3,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "f16",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 87.5,
+  "peak_vram_mib": 9515
+ },
+ {
+  "tag": "stepC-seed3",
+  "pseed": 3,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.375,
+  "decision_acc": 0.375,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 2.125,
+  "mean_lev": 5.0,
+  "malformed_rate": 0.5,
+  "adapt": "",
+  "tok_s": 90.8,
+  "peak_vram_mib": 5749
+ }
+]
+=== DEPTH EXTENSION (c6): turbo3+turbo2(OFF)+f16 @ 49152,65536 NPOS=8 ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepC-dump.jsonl
+depth=49152 kv=turbo3 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=49152 kv=turbo3 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5105-LIMA C=5105-LIMA rc=0
+depth=49152 kv=turbo3 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7131-DELTA C=7131-DELTA rc=0
+depth=49152 kv=turbo3 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7341-HOTEL C=7341-HOTEL rc=0
+depth=49152 kv=turbo3 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=4 lev=4 ans=7779-KILO C=8540-KILO rc=0
+depth=49152 kv=turbo3 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8846-GOLF C=8846-GOLF rc=0
+depth=49152 kv=turbo3 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9783-LIMA C=9783-LIMA rc=0
+depth=49152 kv=turbo3 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4482-INDIA C=4482-INDIA rc=0
+>>> CELL stepC-deep pseed=42 depth=49152 kv=turbo3 decision=0.875 decoy=0.0 mDigitErr=0.5 mLev=0.5 malformed=0.125 adapt='' tok/s=69.3 vram=6445
+depth=49152 kv=turbo2 pos=0.03 correct=False retrieved=False decoyhit=False digit_err=2 lev=2 ans=1955-LIMA C=9935-LIMA rc=0
+depth=49152 kv=turbo2 pos=0.16 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=5105-LIMA rc=0
+depth=49152 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=7131-DELTA rc=0
+depth=49152 kv=turbo2 pos=0.42 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=7341-HOTEL rc=0
+depth=49152 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=0 lev=2 ans=8540-KI C=8540-KILO rc=0
+depth=49152 kv=turbo2 pos=0.68 correct=False retrieved=False decoyhit=False digit_err=0 lev=3 ans=8846-G C=8846-GOLF rc=0
+depth=49152 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9783-LIMA C=9783-LIMA rc=0
+depth=49152 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4482-INDIA C=4482-INDIA rc=0
+>>> CELL stepC-deep pseed=42 depth=49152 kv=turbo2 decision=0.25 decoy=0.0 mDigitErr=1.75 mLev=4.5 malformed=0.375 adapt='' tok/s=83.6 vram=6039
+depth=49152 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=49152 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5105-LIMA C=5105-LIMA rc=0
+depth=49152 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7131-DELTA C=7131-DELTA rc=0
+depth=49152 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7341-HOTEL C=7341-HOTEL rc=0
+depth=49152 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8540-KILO C=8540-KILO rc=0
+depth=49152 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8846-GOLF C=8846-GOLF rc=0
+depth=49152 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9783-LIMA C=9783-LIMA rc=0
+depth=49152 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4482-INDIA C=4482-INDIA rc=0
+>>> CELL stepC-deep pseed=42 depth=49152 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=71.8 vram=11569
+Traceback (most recent call last):
+  File "/mnt/c/ops/decoy-bench-f0.py", line 109, in <module>
+    out,err,rc,peak=run(pr,kv,ctx)
+                    ^^^^^^^^^^^^^^
+  File "/mnt/c/ops/decoy-bench-f0.py", line 92, in run
+    r=subprocess.run([BIN,"-m",MODEL,"-ngl","99","-c",str(ctx),"-n","24","--temp","0","--seed","1","-st","--simple-io","-fa","on","-ctk",kv,"-ctv",kv,"-p",prompt],capture_output=True,text=True,timeout=900,env=ENV)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+OSError: [Errno 7] Argument list too long: '/home/felipe/llama-cpp-turboquant/build/bin/llama-completion'
+/mnt/c/ops/f0-stepC-exp.sh: line 12: 13271 Killed                  TURBO_LAYER_ADAPTIVE=0 DEPTHS=49152,65536 CONFIGS=turbo3,turbo2,f16 NPOS=8 TAG=stepC-deep DUMP="$DUMP" python3 /mnt/c/ops/decoy-bench-f0.py
+ALLDONE Sat Jun 20 20:09:49 UTC 2026

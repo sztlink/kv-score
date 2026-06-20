@@ -1,3 +1,12 @@
+> **UPDATE 2026-06-20 (F0): the "32k cliff" framing here is superseded.** Controlled re-runs
+> (`results/f0-2026-06-20/F0-RESULTS.md`) show the apparent 32k cliff was an artifact of Boundary V
+> (the build auto-enables q8_0 on the first/last 2 V-layers when V=turbo2; never disabled here).
+> With Boundary V OFF (pure 2-bit V), exact recovery degrades early (~8k) and plateaus (~0.25-0.4)
+> with NO 32k cliff; 3-bit V (turbo3) holds to 65k; f16 holds to 65k. The real finding is a
+> bits-vs-depth surface for EXACT recovery (PPL stays flat throughout), with the action in the
+> 2-bit->3-bit step. The numbers below are correct as measured (Boundary V auto-on) but the
+> cliff SHAPE is a mitigation artifact, not an intrinsic 2-bit-V property. See F0-RESULTS.md.
+
 # Decoy-at-depth: a turbo2 exact-value cliff at long context
 
 Date: 2026-06-17. Rig: RTX 4090, WSL2, CUDA 13.0. Fork: llama-cpp-turboquant

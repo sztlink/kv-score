@@ -1,0 +1,164 @@
+START Sat Jun 20 20:10:50 UTC 2026
+=== 49k(validacao -f vs -p) + 65k(novo): turbo3+turbo2(OFF)+f16 NPOS=8 ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-deep-dump.jsonl
+depth=49152 kv=turbo3 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=49152 kv=turbo3 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5105-LIMA C=5105-LIMA rc=0
+depth=49152 kv=turbo3 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7131-DELTA C=7131-DELTA rc=0
+depth=49152 kv=turbo3 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7341-HOTEL C=7341-HOTEL rc=0
+depth=49152 kv=turbo3 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=4 lev=4 ans=7779-KILO C=8540-KILO rc=0
+depth=49152 kv=turbo3 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8846-GOLF C=8846-GOLF rc=0
+depth=49152 kv=turbo3 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9783-LIMA C=9783-LIMA rc=0
+depth=49152 kv=turbo3 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4482-INDIA C=4482-INDIA rc=0
+>>> CELL stepC-deepfix pseed=42 depth=49152 kv=turbo3 decision=0.875 decoy=0.0 mDigitErr=0.5 mLev=0.5 malformed=0.125 adapt='' tok/s=68.5 vram=6439
+depth=49152 kv=turbo2 pos=0.03 correct=False retrieved=False decoyhit=False digit_err=2 lev=2 ans=1955-LIMA C=9935-LIMA rc=0
+depth=49152 kv=turbo2 pos=0.16 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=5105-LIMA rc=0
+depth=49152 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=7131-DELTA rc=0
+depth=49152 kv=turbo2 pos=0.42 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=7341-HOTEL rc=0
+depth=49152 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=0 lev=2 ans=8540-KI C=8540-KILO rc=0
+depth=49152 kv=turbo2 pos=0.68 correct=False retrieved=False decoyhit=False digit_err=0 lev=3 ans=8846-G C=8846-GOLF rc=0
+depth=49152 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9783-LIMA C=9783-LIMA rc=0
+depth=49152 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4482-INDIA C=4482-INDIA rc=0
+>>> CELL stepC-deepfix pseed=42 depth=49152 kv=turbo2 decision=0.25 decoy=0.0 mDigitErr=1.75 mLev=4.5 malformed=0.375 adapt='' tok/s=83.1 vram=6045
+depth=49152 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=49152 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5105-LIMA C=5105-LIMA rc=0
+depth=49152 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7131-DELTA C=7131-DELTA rc=0
+depth=49152 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7341-HOTEL C=7341-HOTEL rc=0
+depth=49152 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8540-KILO C=8540-KILO rc=0
+depth=49152 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8846-GOLF C=8846-GOLF rc=0
+depth=49152 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9783-LIMA C=9783-LIMA rc=0
+depth=49152 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4482-INDIA C=4482-INDIA rc=0
+>>> CELL stepC-deepfix pseed=42 depth=49152 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=73.3 vram=11569
+depth=65536 kv=turbo3 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5943-BRAVO C=5943-BRAVO rc=0
+depth=65536 kv=turbo3 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6577-HOTEL C=6577-HOTEL rc=0
+depth=65536 kv=turbo3 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2588-MIKE C=2588-MIKE rc=0
+depth=65536 kv=turbo3 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7957-DELTA C=7957-DELTA rc=0
+depth=65536 kv=turbo3 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9291-HOTEL C=9291-HOTEL rc=0
+depth=65536 kv=turbo3 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9742-FOXTROT C=9742-FOXTROT rc=0
+depth=65536 kv=turbo3 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8787-ECHO C=8787-ECHO rc=0
+depth=65536 kv=turbo3 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2226-GOLF C=2226-GOLF rc=0
+>>> CELL stepC-deepfix pseed=42 depth=65536 kv=turbo3 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=59.4 vram=6925
+depth=65536 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5943-BRAVO C=5943-BRAVO rc=0
+depth=65536 kv=turbo2 pos=0.16 correct=False retrieved=False decoyhit=True digit_err=4 lev=9 ans=2704-INDIA C=6577-HOTEL rc=0
+depth=65536 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=2588-MIKE rc=0
+depth=65536 kv=turbo2 pos=0.42 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=7957-DELTA rc=0
+depth=65536 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=9291-HOTEL rc=0
+depth=65536 kv=turbo2 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9742-FOXTROT C=9742-FOXTROT rc=0
+depth=65536 kv=turbo2 pos=0.81 correct=False retrieved=False decoyhit=True digit_err=4 lev=8 ans=7675-INDIA C=8787-ECHO rc=0
+depth=65536 kv=turbo2 pos=0.94 correct=False retrieved=False decoyhit=False digit_err=0 lev=5 ans=2226-JULIET C=2226-GOLF rc=0
+>>> CELL stepC-deepfix pseed=42 depth=65536 kv=turbo2 decision=0.25 decoy=0.25 mDigitErr=2.5 mLev=6.375 malformed=0.625 adapt='' tok/s=73.9 vram=6397
+depth=65536 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5943-BRAVO C=5943-BRAVO rc=0
+depth=65536 kv=f16 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6577-HOTEL C=6577-HOTEL rc=0
+depth=65536 kv=f16 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2588-MIKE C=2588-MIKE rc=0
+depth=65536 kv=f16 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7957-DELTA C=7957-DELTA rc=0
+depth=65536 kv=f16 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9291-HOTEL C=9291-HOTEL rc=0
+depth=65536 kv=f16 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9742-FOXTROT C=9742-FOXTROT rc=0
+depth=65536 kv=f16 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8787-ECHO C=8787-ECHO rc=0
+depth=65536 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2226-GOLF C=2226-GOLF rc=0
+>>> CELL stepC-deepfix pseed=42 depth=65536 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=60.6 vram=13611
+
+===== SUMMARY =====
+[
+ {
+  "tag": "stepC-deepfix",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 49152,
+  "kv": "turbo3",
+  "n": 8,
+  "retrieval": 0.875,
+  "decision_acc": 0.875,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.5,
+  "mean_lev": 0.5,
+  "malformed_rate": 0.125,
+  "adapt": "",
+  "tok_s": 68.5,
+  "peak_vram_mib": 6439
+ },
+ {
+  "tag": "stepC-deepfix",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 49152,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.25,
+  "decision_acc": 0.25,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 1.75,
+  "mean_lev": 4.5,
+  "malformed_rate": 0.375,
+  "adapt": "",
+  "tok_s": 83.1,
+  "peak_vram_mib": 6045
+ },
+ {
+  "tag": "stepC-deepfix",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 49152,
+  "kv": "f16",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 73.3,
+  "peak_vram_mib": 11569
+ },
+ {
+  "tag": "stepC-deepfix",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 65536,
+  "kv": "turbo3",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 59.4,
+  "peak_vram_mib": 6925
+ },
+ {
+  "tag": "stepC-deepfix",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 65536,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.25,
+  "decision_acc": 0.25,
+  "decoy_rate": 0.25,
+  "mean_digit_err": 2.5,
+  "mean_lev": 6.375,
+  "malformed_rate": 0.625,
+  "adapt": "",
+  "tok_s": 73.9,
+  "peak_vram_mib": 6397
+ },
+ {
+  "tag": "stepC-deepfix",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 65536,
+  "kv": "f16",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 60.6,
+  "peak_vram_mib": 13611
+ }
+]
+ALLDONE Sat Jun 20 20:29:47 UTC 2026
