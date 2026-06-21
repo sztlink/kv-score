@@ -74,7 +74,7 @@ def digit_err(ans,C):
     return de, word_ok
 def adaptive_from_err(err):
     # captura a linha de log do modo layer-adaptive / boundary V
-    for pat in [r'Boundary V[^\n]*', r'layer-adaptive mode[^\n]*', r'auto-enabled[^\n]*', r'asymmetric[^\n]*']:
+    for pat in [r'InnerQ[^\n]*', r'Boundary V[^\n]*', r'layer-adaptive mode[^\n]*', r'auto-enabled[^\n]*', r'asymmetric[^\n]*']:
         m=re.search(pat,err)
         if m: return m.group(0).strip()
     return ''
@@ -95,8 +95,9 @@ def run(prompt,kv,ctx):
     try:
         fd,pf=tempfile.mkstemp(suffix='.txt',dir='/mnt/c/ops')
         with os.fdopen(fd,'w') as f: f.write(prompt)
+        ctk=os.environ.get('CTK') or kv; ctv=os.environ.get('CTV') or kv
         try:
-            r=subprocess.run([BIN,"-m",MODEL,"-ngl","99","-c",str(ctx),"-n","24","--temp","0","--seed","1","-st","--simple-io","-fa","on","-ctk",kv,"-ctv",kv,"-f",pf],capture_output=True,text=True,timeout=900,env=ENV)
+            r=subprocess.run([BIN,"-m",MODEL,"-ngl","99","-c",str(ctx),"-n","24","--temp","0","--seed","1","-st","--simple-io","-fa","on","-ctk",ctk,"-ctv",ctv,"-f",pf],capture_output=True,text=True,timeout=900,env=ENV)
             out,err,rc=r.stdout,r.stderr,r.returncode
         except subprocess.TimeoutExpired: out,err,rc='','TIMEOUT',124
         except OSError as e: out,err,rc='',f'OSERR:{e}',125
