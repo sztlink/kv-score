@@ -1,0 +1,198 @@
+START Sat Jun 20 18:58:50 UTC 2026
+GPU: 61 MiB
+=== SMOKE 4k f16+turbo2 NPOS=2 ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=(unset->auto) RATIO=2.4 DUMP=None
+depth=4096 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=4096 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7389-HOTEL C=7389-HOTEL rc=0
+>>> CELL smoke pseed=42 depth=4096 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=118.2 vram=5931
+depth=4096 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=4096 kv=turbo2 pos=0.94 correct=False retrieved=False decoyhit=False digit_err=0 lev=1 ans=7389-OTEL C=7389-HOTEL rc=0
+>>> CELL smoke pseed=42 depth=4096 kv=turbo2 decision=0.5 decoy=0.0 mDigitErr=0.0 mLev=0.5 malformed=0.0 adapt='' tok/s=111.5 vram=5293
+
+===== SUMMARY =====
+[
+ {
+  "tag": "smoke",
+  "pseed": 42,
+  "adaptive_env": "auto",
+  "depth": 4096,
+  "kv": "f16",
+  "n": 2,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 118.2,
+  "peak_vram_mib": 5931
+ },
+ {
+  "tag": "smoke",
+  "pseed": 42,
+  "adaptive_env": "auto",
+  "depth": 4096,
+  "kv": "turbo2",
+  "n": 2,
+  "retrieval": 0.5,
+  "decision_acc": 0.5,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.5,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 111.5,
+  "peak_vram_mib": 5293
+ }
+]
+=== SMOKE DONE ===
+=== RUN1 adaptive AUTO f16+turbo3+turbo2 @32k N=16 ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=(unset->auto) RATIO=2.4 DUMP=/mnt/c/ops/f0-stepB-dump.jsonl
+depth=32768 kv=f16 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=32768 kv=f16 pos=0.091 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6866-INDIA C=6866-INDIA rc=0
+depth=32768 kv=f16 pos=0.151 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7897-ALPHA C=7897-ALPHA rc=0
+depth=32768 kv=f16 pos=0.212 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8449-MIKE C=8449-MIKE rc=0
+depth=32768 kv=f16 pos=0.273 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4063-GOLF C=4063-GOLF rc=0
+depth=32768 kv=f16 pos=0.333 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2913-LIMA C=2913-LIMA rc=0
+depth=32768 kv=f16 pos=0.394 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2882-BRAVO C=2882-BRAVO rc=0
+depth=32768 kv=f16 pos=0.455 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8560-ALPHA C=8560-ALPHA rc=0
+depth=32768 kv=f16 pos=0.515 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1207-JULIET C=1207-JULIET rc=0
+depth=32768 kv=f16 pos=0.576 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8495-KILO C=8495-KILO rc=0
+depth=32768 kv=f16 pos=0.637 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1466-GOLF C=1466-GOLF rc=0
+depth=32768 kv=f16 pos=0.697 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7351-ECHO C=7351-ECHO rc=0
+depth=32768 kv=f16 pos=0.758 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2642-ALPHA C=2642-ALPHA rc=0
+depth=32768 kv=f16 pos=0.819 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7095-MIKE C=7095-MIKE rc=0
+depth=32768 kv=f16 pos=0.879 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9593-MIKE C=9593-MIKE rc=0
+depth=32768 kv=f16 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6274-GOLF C=6274-GOLF rc=0
+>>> CELL stepB-adaptiveAUTO pseed=42 depth=32768 kv=f16 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=84.0 vram=9521
+depth=32768 kv=turbo3 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=32768 kv=turbo3 pos=0.091 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6866-INDIA C=6866-INDIA rc=0
+depth=32768 kv=turbo3 pos=0.151 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7897-ALPHA C=7897-ALPHA rc=0
+depth=32768 kv=turbo3 pos=0.212 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8449-MIKE C=8449-MIKE rc=0
+depth=32768 kv=turbo3 pos=0.273 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4063-GOLF C=4063-GOLF rc=0
+depth=32768 kv=turbo3 pos=0.333 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2913-LIMA C=2913-LIMA rc=0
+depth=32768 kv=turbo3 pos=0.394 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2882-BRAVO C=2882-BRAVO rc=0
+depth=32768 kv=turbo3 pos=0.455 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8560-ALPHA C=8560-ALPHA rc=0
+depth=32768 kv=turbo3 pos=0.515 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1207-JULIET C=1207-JULIET rc=0
+depth=32768 kv=turbo3 pos=0.576 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8495-KILO C=8495-KILO rc=0
+depth=32768 kv=turbo3 pos=0.637 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1466-GOLF C=1466-GOLF rc=0
+depth=32768 kv=turbo3 pos=0.697 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7351-ECHO C=7351-ECHO rc=0
+depth=32768 kv=turbo3 pos=0.758 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2642-ALPHA C=2642-ALPHA rc=0
+depth=32768 kv=turbo3 pos=0.819 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7095-MIKE C=7095-MIKE rc=0
+depth=32768 kv=turbo3 pos=0.879 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9593-MIKE C=9593-MIKE rc=0
+depth=32768 kv=turbo3 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6274-GOLF C=6274-GOLF rc=0
+>>> CELL stepB-adaptiveAUTO pseed=42 depth=32768 kv=turbo3 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=78.9 vram=6021
+depth=32768 kv=turbo2 pos=0.03 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=9935-LIMA rc=0
+depth=32768 kv=turbo2 pos=0.091 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6866-INDIA C=6866-INDIA rc=0
+depth=32768 kv=turbo2 pos=0.151 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7897-ALPHA C=7897-ALPHA rc=0
+depth=32768 kv=turbo2 pos=0.212 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=8449-MIKE rc=0
+depth=32768 kv=turbo2 pos=0.273 correct=False retrieved=False decoyhit=False digit_err=1 lev=6 ans=4060-ALPHA C=4063-GOLF rc=0
+depth=32768 kv=turbo2 pos=0.333 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=2913-LIMA rc=0
+depth=32768 kv=turbo2 pos=0.394 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=2882-BRAVO rc=0
+depth=32768 kv=turbo2 pos=0.455 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=8560-ALPHA rc=0
+depth=32768 kv=turbo2 pos=0.515 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1207-JULIET C=1207-JULIET rc=0
+depth=32768 kv=turbo2 pos=0.576 correct=False retrieved=False decoyhit=False digit_err=2 lev=6 ans=8451-GIANT C=8495-KILO rc=0
+depth=32768 kv=turbo2 pos=0.637 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1466-GOLF C=1466-GOLF rc=0
+depth=32768 kv=turbo2 pos=0.697 correct=False retrieved=False decoyhit=False digit_err=0 lev=4 ans=7351-DELTA C=7351-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.758 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=2642-ALPHA rc=0
+depth=32768 kv=turbo2 pos=0.819 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7095-MIKE C=7095-MIKE rc=0
+depth=32768 kv=turbo2 pos=0.879 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9593-MIKE C=9593-MIKE rc=0
+depth=32768 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6274-GOLF C=6274-GOLF rc=0
+>>> CELL stepB-adaptiveAUTO pseed=42 depth=32768 kv=turbo2 decision=0.438 decoy=0.0 mDigitErr=1.688 mLev=4.562 malformed=0.375 adapt='' tok/s=93.1 vram=5865
+
+===== SUMMARY =====
+[
+ {
+  "tag": "stepB-adaptiveAUTO",
+  "pseed": 42,
+  "adaptive_env": "auto",
+  "depth": 32768,
+  "kv": "f16",
+  "n": 16,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 84.0,
+  "peak_vram_mib": 9521
+ },
+ {
+  "tag": "stepB-adaptiveAUTO",
+  "pseed": 42,
+  "adaptive_env": "auto",
+  "depth": 32768,
+  "kv": "turbo3",
+  "n": 16,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 78.9,
+  "peak_vram_mib": 6021
+ },
+ {
+  "tag": "stepB-adaptiveAUTO",
+  "pseed": 42,
+  "adaptive_env": "auto",
+  "depth": 32768,
+  "kv": "turbo2",
+  "n": 16,
+  "retrieval": 0.438,
+  "decision_acc": 0.438,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 1.688,
+  "mean_lev": 4.562,
+  "malformed_rate": 0.375,
+  "adapt": "",
+  "tok_s": 93.1,
+  "peak_vram_mib": 5865
+ }
+]
+=== RUN2 turbo2 Boundary-V OFF @32k N=16 ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepB-dump.jsonl
+depth=32768 kv=turbo2 pos=0.03 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=9935-LIMA rc=0
+depth=32768 kv=turbo2 pos=0.091 correct=False retrieved=False decoyhit=False digit_err=1 lev=1 ans=6867-INDIA C=6866-INDIA rc=0
+depth=32768 kv=turbo2 pos=0.151 correct=False retrieved=False decoyhit=True digit_err=4 lev=8 ans=4983-DELTA C=7897-ALPHA rc=0
+depth=32768 kv=turbo2 pos=0.212 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8449-MIKE C=8449-MIKE rc=0
+depth=32768 kv=turbo2 pos=0.273 correct=False retrieved=False decoyhit=False digit_err=0 lev=5 ans=4063-ALPHA C=4063-GOLF rc=0
+depth=32768 kv=turbo2 pos=0.333 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=2913-LIMA rc=0
+depth=32768 kv=turbo2 pos=0.394 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=2882-BRAVO rc=0
+depth=32768 kv=turbo2 pos=0.455 correct=False retrieved=False decoyhit=False digit_err=3 lev=3 ans=7361-ALPHA C=8560-ALPHA rc=0
+depth=32768 kv=turbo2 pos=0.515 correct=False retrieved=False decoyhit=False digit_err=3 lev=8 ans=8601-GOLF C=1207-JULIET rc=0
+depth=32768 kv=turbo2 pos=0.576 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=8495-KILO rc=0
+depth=32768 kv=turbo2 pos=0.637 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=1466-GOLF rc=0
+depth=32768 kv=turbo2 pos=0.697 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=7351-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.758 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=2642-ALPHA C=2642-ALPHA rc=0
+depth=32768 kv=turbo2 pos=0.819 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7095-MIKE C=7095-MIKE rc=0
+depth=32768 kv=turbo2 pos=0.879 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=9593-MIKE rc=0
+depth=32768 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6274-GOLF C=6274-GOLF rc=0
+>>> CELL stepB-adaptiveOFF pseed=42 depth=32768 kv=turbo2 decision=0.25 decoy=0.062 mDigitErr=2.438 mLev=5.562 malformed=0.5 adapt='' tok/s=91.4 vram=5743
+
+===== SUMMARY =====
+[
+ {
+  "tag": "stepB-adaptiveOFF",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "turbo2",
+  "n": 16,
+  "retrieval": 0.25,
+  "decision_acc": 0.25,
+  "decoy_rate": 0.062,
+  "mean_digit_err": 2.438,
+  "mean_lev": 5.562,
+  "malformed_rate": 0.5,
+  "adapt": "",
+  "tok_s": 91.4,
+  "peak_vram_mib": 5743
+ }
+]
+ALLDONE Sat Jun 20 19:19:48 UTC 2026

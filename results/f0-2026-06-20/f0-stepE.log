@@ -1,0 +1,190 @@
+START Sat Jun 20 23:45:28 UTC 2026
+=== k2v2 (2-bit K + 2-bit V) baseline F0 ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepE-dump.jsonl
+depth=16384 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3303-LIMA C=3303-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=True digit_err=4 lev=7 ans=9851-MIKE C=7322-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1818-ALPHA C=1818-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=4 lev=4 ans=3781-ALPHA C=6896-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.68 correct=False retrieved=False decoyhit=True digit_err=3 lev=8 ans=2520-JULIET C=3323-DELTA rc=0
+depth=16384 kv=turbo2 pos=0.81 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=9217-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4760-MIKE C=4760-MIKE rc=0
+>>> CELL E-k2v2 pseed=42 depth=16384 kv=turbo2 decision=0.5 decoy=0.25 mDigitErr=1.875 mLev=3.625 malformed=0.375 adapt='' tok/s=108.4 vram=5477
+depth=32768 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9783-GOLF C=9783-GOLF rc=0
+depth=32768 kv=turbo2 pos=0.16 correct=False retrieved=False decoyhit=True digit_err=4 lev=9 ans=6651-ALPHA C=4487-HOTEL rc=0
+depth=32768 kv=turbo2 pos=0.29 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=7542-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6217-BRAVO C=6217-BRAVO rc=0
+depth=32768 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=7398-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5952-DELTA C=5952-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8818-ECHO C=8818-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.94 correct=False retrieved=False decoyhit=False digit_err=0 lev=4 ans=5889-GOLF C=5889-ECHO rc=0
+>>> CELL E-k2v2 pseed=42 depth=32768 kv=turbo2 decision=0.5 decoy=0.125 mDigitErr=1.5 mLev=4.125 malformed=0.375 adapt='' tok/s=91.6 vram=5743
+
+===== SUMMARY =====
+[
+ {
+  "tag": "E-k2v2",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 16384,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.5,
+  "decision_acc": 0.5,
+  "decoy_rate": 0.25,
+  "mean_digit_err": 1.875,
+  "mean_lev": 3.625,
+  "malformed_rate": 0.375,
+  "adapt": "",
+  "tok_s": 108.4,
+  "peak_vram_mib": 5477
+ },
+ {
+  "tag": "E-k2v2",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.5,
+  "decision_acc": 0.5,
+  "decoy_rate": 0.125,
+  "mean_digit_err": 1.5,
+  "mean_lev": 4.125,
+  "malformed_rate": 0.375,
+  "adapt": "",
+  "tok_s": 91.6,
+  "peak_vram_mib": 5743
+ }
+]
+=== k8v2 (8-bit K, 2-bit V) -> isola V ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepE-dump.jsonl
+depth=16384 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3303-LIMA C=3303-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7322-LIMA C=7322-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1818-ALPHA C=1818-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6896-ALPHA C=6896-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3323-DELTA C=3323-DELTA rc=0
+depth=16384 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9217-ALPHA C=9217-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4760-MIKE C=4760-MIKE rc=0
+>>> CELL E-k8v2 pseed=42 depth=16384 kv=turbo2 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=107.7 vram=5935
+depth=32768 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9783-GOLF C=9783-GOLF rc=0
+depth=32768 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4487-HOTEL C=4487-HOTEL rc=0
+depth=32768 kv=turbo2 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7542-DELTA C=7542-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6217-BRAVO C=6217-BRAVO rc=0
+depth=32768 kv=turbo2 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7398-DELTA C=7398-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5952-DELTA C=5952-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8818-ECHO C=8818-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5889-ECHO C=5889-ECHO rc=0
+>>> CELL E-k8v2 pseed=42 depth=32768 kv=turbo2 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=94.1 vram=6615
+
+===== SUMMARY =====
+[
+ {
+  "tag": "E-k8v2",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 16384,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 107.7,
+  "peak_vram_mib": 5935
+ },
+ {
+  "tag": "E-k8v2",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 1.0,
+  "decision_acc": 1.0,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 0.0,
+  "mean_lev": 0.0,
+  "malformed_rate": 0.0,
+  "adapt": "",
+  "tok_s": 94.1,
+  "peak_vram_mib": 6615
+ }
+]
+=== k2v8 (2-bit K, 8-bit V) -> isola K ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepE-dump.jsonl
+depth=16384 kv=turbo2 pos=0.03 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=9935-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3303-LIMA C=3303-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7322-LIMA C=7322-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1818-ALPHA C=1818-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=6896-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.68 correct=False retrieved=False decoyhit=False digit_err=1 lev=1 ans=3320-DELTA C=3323-DELTA rc=0
+depth=16384 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9217-ALPHA C=9217-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4760-MIKE C=4760-MIKE rc=0
+>>> CELL E-k2v8 pseed=42 depth=16384 kv=turbo2 decision=0.625 decoy=0.0 mDigitErr=1.125 mLev=2.5 malformed=0.25 adapt='' tok/s=95.2 vram=5929
+depth=32768 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9783-GOLF C=9783-GOLF rc=0
+depth=32768 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4487-HOTEL C=4487-HOTEL rc=0
+depth=32768 kv=turbo2 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7542-DELTA C=7542-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.42 correct=False retrieved=False decoyhit=False digit_err=3 lev=8 ans=5477-DELTA C=6217-BRAVO rc=0
+depth=32768 kv=turbo2 pos=0.55 correct=False retrieved=False decoyhit=True digit_err=4 lev=8 ans=3785-JULIET C=7398-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.68 correct=False retrieved=False decoyhit=False digit_err=4 lev=8 ans=1397-KILO C=5952-DELTA rc=0
+depth=32768 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=8818-ECHO C=8818-ECHO rc=0
+depth=32768 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=5889-ECHO C=5889-ECHO rc=0
+>>> CELL E-k2v8 pseed=42 depth=32768 kv=turbo2 decision=0.625 decoy=0.125 mDigitErr=1.375 mLev=3.0 malformed=0.25 adapt='' tok/s=80.8 vram=6609
+
+===== SUMMARY =====
+[
+ {
+  "tag": "E-k2v8",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 16384,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.625,
+  "decision_acc": 0.625,
+  "decoy_rate": 0.0,
+  "mean_digit_err": 1.125,
+  "mean_lev": 2.5,
+  "malformed_rate": 0.25,
+  "adapt": "",
+  "tok_s": 95.2,
+  "peak_vram_mib": 5929
+ },
+ {
+  "tag": "E-k2v8",
+  "pseed": 42,
+  "adaptive_env": "0",
+  "depth": 32768,
+  "kv": "turbo2",
+  "n": 8,
+  "retrieval": 0.625,
+  "decision_acc": 0.625,
+  "decoy_rate": 0.125,
+  "mean_digit_err": 1.375,
+  "mean_lev": 3.0,
+  "malformed_rate": 0.25,
+  "adapt": "",
+  "tok_s": 80.8,
+  "peak_vram_mib": 6609
+ }
+]
+=== k4v2 (4-bit K, 2-bit V) espelha vLLM ===
+# PROMPT_SEED=42 TURBO_LAYER_ADAPTIVE=0 RATIO=2.4 DUMP=/mnt/c/ops/f0-stepE-dump.jsonl
+depth=16384 kv=turbo2 pos=0.03 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9935-LIMA C=9935-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.16 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3303-LIMA C=3303-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.29 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=7322-LIMA C=7322-LIMA rc=0
+depth=16384 kv=turbo2 pos=0.42 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=1818-ALPHA C=1818-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.55 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=6896-ALPHA C=6896-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.68 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=3323-DELTA C=3323-DELTA rc=0
+depth=16384 kv=turbo2 pos=0.81 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=9217-ALPHA C=9217-ALPHA rc=0
+depth=16384 kv=turbo2 pos=0.94 correct=True retrieved=True decoyhit=False digit_err=0 lev=0 ans=4760-MIKE C=4760-MIKE rc=0
+>>> CELL E-k4v2 pseed=42 depth=16384 kv=turbo2 decision=1.0 decoy=0.0 mDigitErr=0.0 mLev=0.0 malformed=0.0 adapt='' tok/s=2.3 vram=5647
+depth=32768 kv=turbo2 pos=0.03 correct=False retrieved=False decoyhit=False digit_err=4 lev=9 ans=None C=9783-GOLF rc=124
+depth=32768 kv=turbo2 pos=0.16 correct=False retrieved=False decoyhit=False digit_err=4 lev=10 ans=None C=4487-HOTEL rc=124
+/mnt/c/ops/f0-stepE.sh: line 11:  6223 Killed                  TURBO_LAYER_ADAPTIVE=0 CTK=q4_0 CTV=turbo2 DEPTHS=16384,32768 CONFIGS=turbo2 NPOS=8 TAG=E-k4v2 DUMP="$DUMP" python3 "$B"
+ALLDONE Sun Jun 21 02:29:32 UTC 2026

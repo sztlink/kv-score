@@ -48,3 +48,36 @@ Essa pergunta unica decide se existe invencao (codec de 2-bit V melhor) ou se a 
 4. **F2 (oracle-protect titulado):** so se 2/3 mostrarem que codec design recupera. Converte "flanco aberto" em "flanco com metodo".
 
 Dados brutos nesta pasta: f0-stepB.{log,dump.jsonl} (controle Boundary V + 32k N=16), f0-stepC.{log,dump.jsonl} (sweep + multi-seed + 49k), f0-deep.{log,dump.jsonl} (49k validacao -f + 65k).
+
+---
+
+## CORRECAO MAIOR (Step E + F1, 2026-06-20): nao e o V, e o K. V e gratis.
+
+O F0 acima rodou `-ctk turbo2 -ctv turbo2` = **2-bit em K E V juntos**, e atribuiu a perda ao V ("2-bit V"). Isso estava ERRADO: nunca isolamos K de V. Dois experimentos corrigiram.
+
+### F1 (cross-codec, vLLM, Qwen3-4B, decoy-at-depth)
+| codec | 8k | 16k | 32k |
+|---|---|---|---|
+| KVarN k4v2 (4-bit K, 2-bit V) | 0.875 | 1.0 | timeout (sem dado, OOM/lento) |
+| TurboQuant k4v2 (4-bit K, 2-bit V) | 1.0 | 1.0 | **1.0** |
+| fp16 | 1.0 | 1.0 | 1.0 |
+
+TurboQuant **k4v2** (K em 4-bit) segura exato a 32k, o oposto do F0 (k2v2). Pista: a diferenca e o K.
+
+### Step E (desentrelace K/V, Llama-3.1-8B, llama.cpp, Boundary OFF, mesmo stack do F0)
+| K \ V | 2-bit V | 8-bit V |
+|---|---|---|
+| **2-bit K** | 0.5 (k2v2) | 0.625 (k2v8) |
+| **4-bit K** | **1.0** (k4v2, @16k) | - |
+| **8-bit K** | **1.0** (k8v2) | - |
+
+**Inequivoco:** com o K em precisao (q8_0 ou q4_0), o **2-bit V e perfeito ate 32k** (k8v2=1.0, k4v2=1.0). Com o **K em 2-bit, quebra** independente do V (k2v8=0.625, k2v2=0.5). **A degradacao e toda do K. O 2-bit V e gratis.** O "penhasco do 2-bit V" do F0 era o 2-bit K, mal-atribuido.
+
+### Procedencia: isto CONFIRMA a tese do Felipe (origem, marco 2026)
+Felipe Sztutman (@sztlink) ja tinha estabelecido isto na llama.cpp **discussion #20969** em **2026-03-31 / 04-01** (Qwen3-4B, RTX 4090): "V compression is completely free ... all degradation comes from K compression" (`#discussioncomment-16396819`), e "fp16-K + 2bit-V holds 1.0000 cosine at 8K/16K/**32K**, no drift" (`#16402618`), confirmado em producao por PPL (`#16403244`). TheTom citou esse texto no turboquant_plus (README + 5 papers). O Step E aqui apenas RE-DERIVA esse resultado num modelo novo (Llama-3.1-8B), stack novo (llama.cpp) e regua nova (recuperacao exata por profundidade, decoy-at-depth), em vez de cosine/top-1. Arquivo dos comentarios originais: `../../../memory-md/AYA1/research/2026-03-felipe-v-is-free-origin-disc20969.txt`.
+
+### O que muda
+- A frase "2-bit V loses exact recovery from ~8k" (em EXACT-RECOVERY-SURFACE.md e na superficie acima) e K-confundida. A leitura correta: **2-bit-K-and-V degrada; isolado, o V e gratis e o K e o gargalo** (consistente com o campo keys-first e com a tese do @sztlink).
+- A "invencao" de um codec de V melhor e moot (V ja e gratis). A alavanca, se houver, e o K.
+- Daylight residual (secundario): a inversao K/V de camada-tardia que o proprio Felipe flagou em `#16402618` (camadas 32-34, V>K), e a diferenca regua-exata vs cosine. Nenhum e o "penhasco" que pensavamos.
+Dados: f0-stepE.{log,dump.jsonl} (k2v2/k8v2/k2v8/k4v2), f1-dump.jsonl (cross-codec vLLM).

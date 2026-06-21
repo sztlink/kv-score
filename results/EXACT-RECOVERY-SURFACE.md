@@ -1,3 +1,12 @@
+> **SECOND CORRECTION 2026-06-20 (the bigger one): it is the K, not the V.** This writeup ran
+> 2-bit K AND 2-bit V together and attributed the loss to V. Isolating them (see
+> `f0-2026-06-20/F0-RESULTS.md`, Step E) shows: with K kept at >=4-bit, **2-bit V is exact to 32k**
+> (q8_0-K + 2-bit-V = 1.0; q4_0-K + 2-bit-V = 1.0); with K at 2-bit it breaks regardless of V. The
+> degradation is entirely K-driven; **2-bit V is free**. This reproduces, on Llama-3.1-8B / llama.cpp
+> with an exact-recovery ruler, what Felipe Sztutman (@sztlink) established in March 2026 on
+> llama.cpp discussion #20969 (fp16-K + 2bit-V = 1.0000 cosine at 8K/16K/32K; "all degradation comes
+> from K"). Read the "2-bit V degrades" framing below as "2-bit-K-and-V degrades"; V alone is free.
+
 # KV value-cache exact recovery vs depth: a bits-vs-depth surface (and a self-correction)
 
 Date: 2026-06-20. Rig: RTX 4090, WSL2, CUDA 13.0. Fork: llama-cpp-turboquant @ ed81ed0.
