@@ -106,13 +106,15 @@ Q has resolving power at 4-8B and saturates by 14B; R takes over exactly there. 
 - **Qwen2.5-14B-AWQ**: every method 118-120/120. The routing task stops discriminating; this is what motivates the R axis.
 - **Qwen2.5-1.5B** marks two edges. KVarN requires `head_dim` in {128, 256, 512}, so Qwen2.5-0.5B (head_dim 64) cannot run it at all, and the smallest comparable model is the 1.5B. And the probe floors: fp16 itself scores only ~16/120, so the behavior axis has no resolving power below ~4B. Directionally the most aggressive preset (TurboQuant k4v2_nc, 2-bit V) roughly halves at the floor while KVarN holds, but the signal-to-noise is low.
 
-## Two laws beyond the numbers
+## Three laws beyond the numbers
 
-The rankings will date. These two findings are the laws the rankings keep re-confirming, and they are what to cite a year from now.
+The rankings will date. These three findings are the laws the rankings keep re-confirming, and they are what to cite a year from now.
 
 **There is no universal best eviction method; there is a universal cliff.** Across SnapKV, TOVA, KeyDiff, CUR, ExpectedAttention and Knorm, behavior collapses between compression ratio 0.375 and 0.625 on the same cases, on three models in two families. The best press at 0.5 is model-dependent (SnapKV on Qwen2.5-7B, TOVA on Qwen3-4B, KeyDiff on Mistral-7B), and presses that survive one model collapse on another. The cliff does not move.
 
 **In KV quantization, the normalization is the product, not the bit budget.** At the same 4-bit budget on an outlier-heavy model, naive per-channel int4 retains 0% behavior while every distribution-aware method is near-lossless. The technique that tames the outlier channels (KIVI's per-token V plus fp16 residual, KVarN's Sinkhorn normalization, TurboQuant's rotation) is the whole game; the bits are secondary.
+
+**Within a codec, value compression is free; the cost is all in the keys.** At fixed key precision, dropping the value cache to 2-bit has no measurable effect on exact recovery; the degradation tracks key precision alone. Established by @sztlink on [llama.cpp discussion #20969](https://github.com/ggml-org/llama.cpp/discussions/20969) in March 2026 (fp16-K + 2-bit-V holds 1.0000 cosine / 100% top-1 at 8K, 16K, and 32K; all degradation comes from K), and re-derived here in June with an exact-recovery ruler on Llama-3.1-8B / llama.cpp: with K at >=4-bit, 2-bit V is exact to 32K (q8_0-K and q4_0-K both perfect); with K at 2-bit it breaks regardless of V. See [results/EXACT-RECOVERY-SURFACE.md](results/EXACT-RECOVERY-SURFACE.md). This is a within-codec statement and is orthogonal to the normalization law above: across methods the normalization still dominates, which is how KVarN's 4-bit K outscores TurboQuant's 8-bit K on fidelity.
 
 ## Supporting evidence
 
@@ -156,7 +158,7 @@ This repo corrects in public. Listing the mistakes is not an apology; it is why 
 
 ## Roadmap
 
-- **R axis: done** (fidelity / fp16-trajectory LCP, validated n=28). Next: a long-range-dependency variant (needle recall, positional counting) to test whether quant error compounds over the horizon, plus 32B where Q is fully saturated.
+- **R axis: done** (fidelity / fp16-trajectory LCP, validated n=28). The long-range-dependency variant is also **done**: an exact-recovery probe at depth (decoy-at-depth) landed the within-codec keys-first law and the bits-vs-depth surface ([results/EXACT-RECOVERY-SURFACE.md](results/EXACT-RECOVERY-SURFACE.md)). Quant error does not compound over depth; for exact recovery it is set by key precision (V free, K the cost). Still open: 32B where Q is fully saturated.
 - Re-measure the 7B `g64` variants and TurboQuant TriAttention under the saturating load; a clean Mistral throughput row on the [#20](https://github.com/huawei-csl/KVarN/pull/20)-fixed build.
 - AdaKV and the flash-attention presses; ReasonAlloc when its code is released.
 
